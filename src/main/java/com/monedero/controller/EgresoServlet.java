@@ -47,9 +47,9 @@ public class EgresoServlet extends HttpServlet {
                 cuentaOrigen.setBalance(cuentaOrigen.getBalance() - valor);
                 cuentaDAO.update(cuentaOrigen);
 
-                response.sendRedirect("cuenta.jsp");
+                response.sendRedirect("cuenta");
             } else {
-                response.sendRedirect("cuenta.jsp?error=SaldoInsuficiente");
+                response.sendRedirect("cuenta?error=SaldoInsuficiente");
             }
         }
     }

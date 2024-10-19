@@ -38,7 +38,7 @@ public class CuentaServlet extends HttpServlet {
 
             cuentaDAO.save(cuenta);
 
-            response.sendRedirect("cuenta.jsp");
+            response.sendRedirect("cuenta");
         }
     }
 
