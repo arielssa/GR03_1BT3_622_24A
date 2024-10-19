@@ -38,7 +38,7 @@ public class CuentaServlet extends HttpServlet {
 
             cuentaDAO.save(cuenta);
 
-            response.sendRedirect("tablero.jsp");
+            response.sendRedirect("cuenta.jsp");
         }
     }
 
@@ -46,6 +46,6 @@ public class CuentaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
         request.setAttribute("cuentas", cuentaDAO.findByUsuario(usuario));
-        request.getRequestDispatcher("tablero.jsp").forward(request, response);
+        request.getRequestDispatcher("cuenta.jsp").forward(request, response);
     }
 }

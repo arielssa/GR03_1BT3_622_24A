@@ -43,7 +43,7 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = usuarioDAO.findByNombreUsuario(nombreUsuario);
             if (usuario != null && usuario.getContrasena().equals(contrasena)) {
                 request.getSession().setAttribute("usuario", usuario);
-                response.sendRedirect("tablero.jsp");
+                response.sendRedirect("cuenta.jsp");
             } else {
                 response.sendRedirect("login.jsp?error=true");
             }

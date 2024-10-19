@@ -51,9 +51,9 @@ public class TransferenciaServlet extends HttpServlet {
                 cuentaDAO.update(cuentaOrigen);
                 cuentaDAO.update(cuentaDestino);
 
-                response.sendRedirect("tablero.jsp");
+                response.sendRedirect("cuenta.jsp");
             } else {
-                response.sendRedirect("tablero.jsp?error=SaldoInsuficiente");
+                response.sendRedirect("cuenta.jsp?error=SaldoInsuficiente");
             }
         }
     }
