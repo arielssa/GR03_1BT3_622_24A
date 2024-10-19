@@ -43,7 +43,7 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = usuarioDAO.findByNombreUsuario(nombreUsuario);
             if (usuario != null && usuario.getContrasena().equals(contrasena)) {
                 request.getSession().setAttribute("usuario", usuario);
-                response.sendRedirect("/cuenta");
+                response.sendRedirect("/GR03_1BT3_622_24A/cuenta");
             } else {
                 response.sendRedirect("login.jsp?error=true");
             }
