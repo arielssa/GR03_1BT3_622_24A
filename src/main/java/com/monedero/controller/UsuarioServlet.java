@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/usuario")
 public class UsuarioServlet extends HttpServlet {
-    private UsuarioDAO usuarioDAO;
+    protected UsuarioDAO usuarioDAO;
 
     @Override
     public void init() {
