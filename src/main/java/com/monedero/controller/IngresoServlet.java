@@ -46,7 +46,7 @@ public class IngresoServlet extends HttpServlet {
             cuentaDestino.setBalance(cuentaDestino.getBalance() + valor);
             cuentaDAO.update(cuentaDestino);
 
-            response.sendRedirect("cuenta.jsp");
+            response.sendRedirect("tablero.jsp");
         }
     }
 }

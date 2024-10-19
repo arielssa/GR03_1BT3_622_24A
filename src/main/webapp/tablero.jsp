@@ -50,16 +50,9 @@
     </c:forEach>
 </table>
 
-<h3>Crear Nueva Cuenta</h3>
-<form action="cuenta" method="post">
-    <input type="hidden" name="action" value="create">
-    <input type="text" name="nombre" placeholder="Nombre de la cuenta" required>
-    <input type="text" name="numeroCuenta" placeholder="Número de cuenta" required>
-    <input type="number" name="balance" placeholder="Balance inicial" required>
-    <button type="submit">Crear Cuenta</button>
-</form>
-
 <br>
+<a href="crearCuenta.jsp">Crear Nueva Cuenta</a> <!-- Enlace para crear una nueva cuenta -->
+<br><br>
 <a href="index.jsp">Volver a inicio</a> | <a href="logout.jsp">Cerrar sesión</a>
 </body>
 </html>
