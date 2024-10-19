@@ -35,7 +35,7 @@ public class EgresoServlet extends HttpServlet {
 
             Cuenta cuentaOrigen = cuentaDAO.findById(cuentaId);
             if (cuentaOrigen.getBalance() >= valor) {
-                Egreso egreso = new Egreso();
+                Egreso egreso = new Egreso(cuentaOrigen, valor, concepto, categoria);
                 egreso.setCuentaOrigen(cuentaOrigen);
                 egreso.setValor(valor);
                 egreso.setConcepto(concepto);

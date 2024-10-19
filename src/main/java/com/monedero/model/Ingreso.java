@@ -22,6 +22,24 @@ public class Ingreso {
     @Column(name = "categoria")
     private String categoria;
 
+    // Constructores
+
+    public Ingreso() {
+    }
+
+    public Ingreso(Cuenta cuentaDestino, double valor, String concepto, String categoria) {
+        this.cuentaDestino = cuentaDestino;
+        this.valor = valor;
+        this.concepto = concepto;
+        this.categoria = categoria;
+    }
+
+    // Métodos
+
+    public void registrarIngreso() {
+        cuentaDestino.depositarDinero(this.valor);
+    }
+
     // Getters y Setters
     public int getId() {
         return id;

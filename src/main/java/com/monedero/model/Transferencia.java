@@ -23,6 +23,25 @@ public class Transferencia {
     @Column(name = "concepto")
     private String concepto;
 
+    // Constructores
+    public Transferencia() {
+    }
+
+    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor, String concepto) {
+        this.cuentaOrigen = cuentaOrigen;
+        this.cuentaDestino = cuentaDestino;
+        this.valor = valor;
+        this.concepto = concepto;
+    }
+
+    // Métodos
+    public void realizarTransferencia() {
+        if (cuentaOrigen.validarRetiro(this.valor)) {
+            cuentaOrigen.retirarDinero(this.valor);
+            cuentaDestino.depositarDinero(this.valor);
+        }
+    }
+
     // Getters y Setters
     public int getId() {
         return id;

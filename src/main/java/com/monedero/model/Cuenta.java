@@ -22,6 +22,36 @@ public class Cuenta {
     @Column(name = "balance")
     private double balance;
 
+    // Constructores
+    public Cuenta() {
+    }
+
+    public Cuenta(String nombre, String numeroCuenta, Usuario usuario, double balance) {
+        this.nombre = nombre;
+        this.numeroCuenta = numeroCuenta;
+        this.usuario = usuario;
+        this.balance = balance;
+    }
+
+    // Métodos
+    public void retirarDinero(double valor) {
+        if (validarRetiro(valor))
+            this.balance -= valor;
+        else
+            System.out.println("No hay suficiente dinero en la cuenta");
+    }
+
+    public void depositarDinero(double valor) {
+        this.balance += valor;
+    }
+
+    public boolean validarRetiro(double valor) {
+        if (this.balance >= valor) {
+            return true;
+        }
+        return false;
+    }
+
     // Getters y Setters
     public int getId() {
         return id;

@@ -22,6 +22,23 @@ public class Egreso {
     @Column(name = "categoria")
     private String categoria;
 
+    // Constructores
+    public Egreso() {
+    }
+
+    public Egreso(Cuenta cuentaOrigen, double valor, String concepto, String categoria) {
+        this.cuentaOrigen = cuentaOrigen;
+        this.valor = valor;
+        this.concepto = concepto;
+        this.categoria = categoria;
+    }
+
+    // Métodos
+    public void registrarEgreso() {
+        if(cuentaOrigen.validarRetiro(this.valor))
+            cuentaOrigen.retirarDinero(this.valor);
+    }
+
     // Getters y Setters
     public int getId() {
         return id;
