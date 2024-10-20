@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/transferencia")
 public class TransferenciaServlet extends HttpServlet {
@@ -42,12 +43,11 @@ public class TransferenciaServlet extends HttpServlet {
                 transferencia.setCuentaDestino(cuentaDestino);
                 transferencia.setValor(valor);
                 transferencia.setConcepto(concepto);
+                transferencia.setFecha(LocalDateTime.now());
+
+                transferencia.realizarTransferencia();
 
                 transferenciaDAO.save(transferencia);
-
-                // Actualizar los balances de las cuentas
-                cuentaOrigen.setBalance(cuentaOrigen.getBalance() - valor);
-                cuentaDestino.setBalance(cuentaDestino.getBalance() + valor);
                 cuentaDAO.update(cuentaOrigen);
                 cuentaDAO.update(cuentaDestino);
 

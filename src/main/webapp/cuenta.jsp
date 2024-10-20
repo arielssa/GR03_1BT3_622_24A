@@ -4,12 +4,19 @@
 <html>
 <head>
   <title>Mis Cuentas</title>
+  <style>
+    form {
+      display: block; /* Asegura que cada formulario se muestre en una línea diferente */
+      margin-bottom: 10px; /* Agrega espacio entre los formularios */
+    }
+  </style>
 </head>
 <body>
 <h2>Bienvenido, ${usuario.nombre}</h2>
 <h3>Mis Cuentas</h3>
 <table border="1">
   <tr>
+    <th>Id</th>
     <th>Nombre</th>
     <th>Número de Cuenta</th>
     <th>Balance</th>
@@ -17,11 +24,17 @@
   </tr>
   <c:forEach var="cuenta" items="${cuentas}">
     <tr>
+      <td>${cuenta.id}</td>
       <td>${cuenta.nombre}</td>
       <td>${cuenta.numeroCuenta}</td>
       <td>${cuenta.balance}</td>
       <td>
-        <form action="ingreso" method="post" style="display:inline;">
+        <form action="detalleCuenta.jsp" method="get">
+          <input type="hidden" name="cuentaId" value="${cuenta.id}">
+          <button type="submit">Ver Detalles</button>
+        </form>
+
+        <form action="ingreso" method="post">
           <input type="hidden" name="action" value="create">
           <input type="hidden" name="cuentaId" value="${cuenta.id}">
           <input type="number" name="valor" placeholder="Valor" required>
@@ -29,7 +42,8 @@
           <input type="text" name="categoria" placeholder="Categoría">
           <button type="submit">Ingresar</button>
         </form>
-        <form action="egreso" method="post" style="display:inline;">
+
+        <form action="egreso" method="post">
           <input type="hidden" name="action" value="create">
           <input type="hidden" name="cuentaId" value="${cuenta.id}">
           <input type="number" name="valor" placeholder="Valor" required>
@@ -37,7 +51,8 @@
           <input type="text" name="categoria" placeholder="Categoría">
           <button type="submit">Egresar</button>
         </form>
-        <form action="transferencia" method="post" style="display:inline;">
+
+        <form action="transferencia" method="post">
           <input type="hidden" name="action" value="create">
           <input type="hidden" name="cuentaOrigenId" value="${cuenta.id}">
           <input type="number" name="cuentaDestinoId" placeholder="ID Destino" required>

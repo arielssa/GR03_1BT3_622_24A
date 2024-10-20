@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/egreso")
 public class EgresoServlet extends HttpServlet {
@@ -40,11 +41,11 @@ public class EgresoServlet extends HttpServlet {
                 egreso.setValor(valor);
                 egreso.setConcepto(concepto);
                 egreso.setCategoria(categoria);
+                egreso.setFecha(LocalDateTime.now());
+
+                egreso.registrarEgreso();
 
                 egresoDAO.save(egreso);
-
-                // Actualizar el balance de la cuenta
-                cuentaOrigen.setBalance(cuentaOrigen.getBalance() - valor);
                 cuentaDAO.update(cuentaOrigen);
 
                 response.sendRedirect("cuenta");

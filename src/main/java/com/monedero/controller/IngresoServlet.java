@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet("/ingreso")
 public class IngresoServlet extends HttpServlet {
@@ -39,12 +40,14 @@ public class IngresoServlet extends HttpServlet {
             ingreso.setValor(valor);
             ingreso.setConcepto(concepto);
             ingreso.setCategoria(categoria);
+            ingreso.setFecha(LocalDateTime.now());
+
+
+            ingreso.registrarIngreso();
 
             ingresoDAO.save(ingreso);
-
-            // Actualizar el balance de la cuenta
-            cuentaDestino.setBalance(cuentaDestino.getBalance() + valor);
             cuentaDAO.update(cuentaDestino);
+
 
             response.sendRedirect("cuenta");
         }

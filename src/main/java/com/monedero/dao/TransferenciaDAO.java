@@ -28,4 +28,12 @@ public class TransferenciaDAO extends BaseDAO<Transferencia> {
             return query.list();
         }
     }
+
+    public List<Transferencia> findByCuentaAsociada(Cuenta cuenta) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Transferencia> query = session.createQuery("FROM Transferencia WHERE cuentaDestino = :cuenta OR cuentaOrigen = :cuenta", Transferencia.class);
+            query.setParameter("cuenta", cuenta);
+            return query.list();
+        }
+    }
 }

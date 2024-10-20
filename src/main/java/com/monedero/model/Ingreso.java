@@ -1,6 +1,7 @@
 package com.monedero.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ingresos")
@@ -13,14 +14,10 @@ public class Ingreso {
     @JoinColumn(name = "cuenta_destino_id")
     private Cuenta cuentaDestino;
 
-    @Column(name = "valor")
     private double valor;
-
-    @Column(name = "concepto")
     private String concepto;
-
-    @Column(name = "categoria")
     private String categoria;
+    private LocalDateTime fecha;
 
     // Constructores
 
@@ -79,5 +76,13 @@ public class Ingreso {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
     }
 }

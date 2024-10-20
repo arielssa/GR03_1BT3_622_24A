@@ -1,6 +1,7 @@
 package com.monedero.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transferencias")
@@ -17,11 +18,9 @@ public class Transferencia {
     @JoinColumn(name = "cuenta_destino_id")
     private Cuenta cuentaDestino;
 
-    @Column(name = "valor")
     private double valor;
-
-    @Column(name = "concepto")
     private String concepto;
+    private LocalDateTime fecha;
 
     // Constructores
     public Transferencia() {
@@ -41,6 +40,7 @@ public class Transferencia {
             cuentaDestino.depositarDinero(this.valor);
         }
     }
+
 
     // Getters y Setters
     public int getId() {
@@ -81,5 +81,13 @@ public class Transferencia {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
     }
 }

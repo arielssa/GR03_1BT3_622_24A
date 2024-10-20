@@ -35,10 +35,7 @@ public class Cuenta {
 
     // Métodos
     public void retirarDinero(double valor) {
-        if (validarRetiro(valor))
-            this.balance -= valor;
-        else
-            System.out.println("No hay suficiente dinero en la cuenta");
+        this.balance -= valor;
     }
 
     public void depositarDinero(double valor) {
