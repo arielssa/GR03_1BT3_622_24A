@@ -49,21 +49,30 @@ public class GestorTransacciones {
         List<Ingreso> ingresosPorFecha = new ArrayList<>();
 
         for (Ingreso ingreso : ingresos) {
-            if (!ingreso.getFecha().toLocalDate().isBefore(fechaInicio) && !ingreso.getFecha().toLocalDate().isAfter(fechaFin)) {
+            LocalDate fechaIngreso = ingreso.getFecha().toLocalDate();
+            boolean dentroDeRango = !fechaIngreso.isBefore(fechaInicio) && !fechaIngreso.isAfter(fechaFin);
+
+            if (dentroDeRango) {
                 ingresosPorFecha.add(ingreso);
             }
         }
+
         return ingresosPorFecha;
     }
+
 
     public List<Egreso> obtenerEgresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         List<Egreso> egresosPorFecha = new ArrayList<>();
 
         for (Egreso egreso : egresos) {
-            if (!egreso.getFecha().toLocalDate().isBefore(fechaInicio) && !egreso.getFecha().toLocalDate().isAfter(fechaFin)) {
+            LocalDate fechaEgreso = egreso.getFecha().toLocalDate();
+            boolean dentroDeRango = !fechaEgreso.isBefore(fechaInicio) && !fechaEgreso.isAfter(fechaFin);
+
+            if (dentroDeRango) {
                 egresosPorFecha.add(egreso);
             }
         }
+
         return egresosPorFecha;
     }
 
@@ -80,19 +89,21 @@ public class GestorTransacciones {
 
     public double obtenerTotalIngresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         double total = 0;
-        List<Ingreso> ingresosPorFecha = this.obtenerIngresosPorFecha(fechaInicio, fechaFin);
-        for (Ingreso ingreso : ingresosPorFecha) {
+
+        for (Ingreso ingreso : this.obtenerIngresosPorFecha(fechaInicio, fechaFin)) {
             total += ingreso.getValor();
         }
+
         return total;
     }
 
     public double obtenerTotalEgresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         double total = 0;
-        List<Egreso> egresosPorFecha = this.obtenerEgresosPorFecha(fechaInicio, fechaFin);
-        for (Egreso egreso : egresosPorFecha) {
+
+        for (Egreso egreso : this.obtenerEgresosPorFecha(fechaInicio, fechaFin)) {
             total += egreso.getValor();
         }
+
         return total;
     }
 

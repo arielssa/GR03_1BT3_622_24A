@@ -43,11 +43,9 @@ public class Cuenta {
     }
 
     public boolean validarRetiro(double valor) {
-        if (this.balance >= valor) {
-            return true;
-        }
-        return false;
+        return this.balance >= valor;
     }
+
 
     // Getters y Setters
     public int getId() {
