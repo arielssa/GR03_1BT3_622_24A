@@ -9,13 +9,14 @@
 <h2>Detalles de la Cuenta</h2>
 
 <!-- Mostrar los detalles de la cuenta -->
+<p><strong>ID de la cuenta:</strong> ${cuentaId}</p>
 <p><strong>Nombre de la cuenta:</strong> ${cuenta.nombre}</p>
 <p><strong>Número de cuenta:</strong> ${cuenta.numeroCuenta}</p>
 <p><strong>Balance:</strong> ${cuenta.balance}</p>
 
 <!-- Formularios para seleccionar fechas y consultar ingresos, egresos y transferencias -->
 <h3>Consultar Movimientos por Fecha</h3>
-<form action="" method="get">
+<form action="movimientos" method="get">
     <input type="hidden" name="cuentaId" value="${cuenta.id}">
 
     <!-- Selección de rango de fechas -->
@@ -27,16 +28,16 @@
 
     <br><br>
     <!-- Botón para consultar ingresos -->
-    <button type="submit" formaction="ingresosPorFecha">Ver Ingresos</button>
+    <button type="submit" name="action" value="ingresos">Ver Ingresos</button>
 
     <!-- Botón para consultar egresos -->
-    <button type="submit" formaction="egresosPorFecha">Ver Egresos</button>
+    <button type="submit" name="action" value="egresos">Ver Egresos</button>
 
     <!-- Botón para consultar transferencias -->
-    <button type="submit" formaction="transferenciasPorFecha">Ver Transferencias</button>
+    <button type="submit" name="action" value="transferencias">Ver Transferencias</button>
 </form>
 
 <br>
-<a href="misCuentas.jsp">Volver a Mis Cuentas</a>
+<a href="cuenta">Volver a Mis Cuentas</a>
 </body>
 </html>

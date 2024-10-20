@@ -4,6 +4,7 @@ import com.monedero.dao.EgresoDAO;
 import com.monedero.dao.IngresoDAO;
 import com.monedero.dao.TransferenciaDAO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,40 +45,40 @@ public class GestorTransacciones {
         this.transferencias.add(transferencia);
     }
 
-    public List<Ingreso> obtenerIngresosPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    public List<Ingreso> obtenerIngresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         List<Ingreso> ingresosPorFecha = new ArrayList<>();
 
         for (Ingreso ingreso : ingresos) {
-            if (!ingreso.getFecha().isBefore(fechaInicio) && !ingreso.getFecha().isAfter(fechaFin)) {
+            if (!ingreso.getFecha().toLocalDate().isBefore(fechaInicio) && !ingreso.getFecha().toLocalDate().isAfter(fechaFin)) {
                 ingresosPorFecha.add(ingreso);
             }
         }
         return ingresosPorFecha;
     }
 
-    public List<Egreso> obtenerEgresosPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    public List<Egreso> obtenerEgresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         List<Egreso> egresosPorFecha = new ArrayList<>();
 
         for (Egreso egreso : egresos) {
-            if (!egreso.getFecha().isBefore(fechaInicio) && !egreso.getFecha().isAfter(fechaFin)) {
+            if (!egreso.getFecha().toLocalDate().isBefore(fechaInicio) && !egreso.getFecha().toLocalDate().isAfter(fechaFin)) {
                 egresosPorFecha.add(egreso);
             }
         }
         return egresosPorFecha;
     }
 
-    public List<Transferencia> obtenerTransferenciaPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    public List<Transferencia> obtenerTransferenciasPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         List<Transferencia> transferenciasPorFecha = new ArrayList<>();
 
         for (Transferencia transferencia : transferencias) {
-            if (!transferencia.getFecha().isBefore(fechaInicio) && !transferencia.getFecha().isAfter(fechaFin)) {
+            if (!transferencia.getFecha().toLocalDate().isBefore(fechaInicio) && !transferencia.getFecha().toLocalDate().isAfter(fechaFin)) {
                 transferenciasPorFecha.add(transferencia);
             }
         }
         return transferenciasPorFecha;
     }
 
-    public double obtenerTotalIngresosPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    public double obtenerTotalIngresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         double total = 0;
         List<Ingreso> ingresosPorFecha = this.obtenerIngresosPorFecha(fechaInicio, fechaFin);
         for (Ingreso ingreso : ingresosPorFecha) {
@@ -86,7 +87,7 @@ public class GestorTransacciones {
         return total;
     }
 
-    public double obtenerTotalEgresosPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+    public double obtenerTotalEgresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         double total = 0;
         List<Egreso> egresosPorFecha = this.obtenerEgresosPorFecha(fechaInicio, fechaFin);
         for (Egreso egreso : egresosPorFecha) {

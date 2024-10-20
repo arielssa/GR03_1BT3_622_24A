@@ -6,8 +6,8 @@
   <title>Mis Cuentas</title>
   <style>
     form {
-      display: block; /* Asegura que cada formulario se muestre en una línea diferente */
-      margin-bottom: 10px; /* Agrega espacio entre los formularios */
+      display: block;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -29,7 +29,7 @@
       <td>${cuenta.numeroCuenta}</td>
       <td>${cuenta.balance}</td>
       <td>
-        <form action="detalleCuenta.jsp" method="get">
+        <form action="detalleCuenta" method="get">
           <input type="hidden" name="cuentaId" value="${cuenta.id}">
           <button type="submit">Ver Detalles</button>
         </form>

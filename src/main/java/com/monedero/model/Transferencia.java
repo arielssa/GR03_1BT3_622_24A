@@ -20,10 +20,12 @@ public class Transferencia {
 
     private double valor;
     private String concepto;
+    private String categoria;
     private LocalDateTime fecha;
 
     // Constructores
     public Transferencia() {
+        categoria = "Transferencia";
     }
 
     public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor, String concepto) {
@@ -89,5 +91,13 @@ public class Transferencia {
 
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }
