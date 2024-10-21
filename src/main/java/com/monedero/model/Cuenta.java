@@ -21,6 +21,19 @@ public class Cuenta {
 
     @Column(name = "balance")
     private double balance;
+    // Métodos
+    public void retirarDinero(double valor) {
+        this.balance -= valor;
+    }
+
+    public void depositarDinero(double valor) {
+        this.balance += valor;
+    }
+
+    // Método para validar si el retiro es posible
+    public boolean validarRetiro(double valor) {
+        return this.balance >= valor;
+    }
 
     // Getters y Setters
     public int getId() {
