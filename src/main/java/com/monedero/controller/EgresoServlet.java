@@ -43,7 +43,7 @@ public class EgresoServlet extends HttpServlet {
                 egreso.setCategoria(categoria);
                 egreso.setFecha(LocalDateTime.now());
 
-                egreso.registrarEgreso();
+                egreso.realizarTransaccion();
 
                 egresoDAO.save(egreso);
                 cuentaDAO.update(cuentaOrigen);

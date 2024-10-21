@@ -20,7 +20,7 @@ public class TransferenciaTest {
 
         // Verificación
         Assertions.assertThrows(RuntimeException.class, () -> {
-            transferencia.realizarTransferencia();
+            transferencia.realizarTransaccion();
         });
     }
 
@@ -37,7 +37,7 @@ public class TransferenciaTest {
 
         // Verificación
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            transferencia.realizarTransferencia();
+            transferencia.realizarTransaccion();
         });
     }
 }
