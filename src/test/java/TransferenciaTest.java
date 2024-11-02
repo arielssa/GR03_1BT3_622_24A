@@ -1,5 +1,3 @@
-package com.monedero.test;
-
 import com.monedero.model.Transferencia;
 import com.monedero.model.Cuenta;
 import org.junit.jupiter.api.Assertions;

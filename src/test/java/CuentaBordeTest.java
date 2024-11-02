@@ -1,5 +1,3 @@
-package com.monedero.test;
-
 import com.monedero.model.Cuenta;
 import com.monedero.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;

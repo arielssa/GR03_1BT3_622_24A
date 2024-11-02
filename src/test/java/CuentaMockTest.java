@@ -1,11 +1,8 @@
-package com.monedero.test;
-
 import com.monedero.model.Cuenta;
 import com.monedero.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +14,7 @@ public class CuentaMockTest {
 
     @BeforeEach
     public void setUp() {
+
         // Crear un mock de la clase Usuario
         Usuario usuarioMock = Mockito.mock(Usuario.class);
 
