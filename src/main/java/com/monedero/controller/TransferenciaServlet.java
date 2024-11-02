@@ -45,7 +45,7 @@ public class TransferenciaServlet extends HttpServlet {
                 transferencia.setConcepto(concepto);
                 transferencia.setFecha(LocalDateTime.now());
 
-                transferencia.realizarTransferencia();
+                transferencia.realizarTransaccion();
 
                 transferenciaDAO.save(transferencia);
                 cuentaDAO.update(cuentaOrigen);

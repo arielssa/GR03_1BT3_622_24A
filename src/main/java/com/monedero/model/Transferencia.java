@@ -5,10 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transferencias")
-public class Transferencia {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Transferencia extends Transaccion {
 
     @ManyToOne
     @JoinColumn(name = "cuenta_origen_id")
@@ -18,41 +15,38 @@ public class Transferencia {
     @JoinColumn(name = "cuenta_destino_id")
     private Cuenta cuentaDestino;
 
-    private double valor;
-    private String concepto;
-    private String categoria;
-    private LocalDateTime fecha;
-
     // Constructores
     public Transferencia() {
-        categoria = "Transferencia";
+    }
+
+    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor, String concepto, String categoria) {
+        super(valor, concepto, categoria);
+        this.cuentaOrigen = cuentaOrigen;
+        this.cuentaDestino = cuentaDestino;
     }
 
     public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor, String concepto) {
+        super(valor, concepto);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
-        this.valor = valor;
-        this.concepto = concepto;
+    }
+
+    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor) {
+        super(valor);
+        this.cuentaOrigen = cuentaOrigen;
+        this.cuentaDestino = cuentaDestino;
     }
 
     // Métodos
-    public void realizarTransferencia() {
-        if (cuentaOrigen.validarRetiro(this.valor)) {
-            cuentaOrigen.retirarDinero(this.valor);
-            cuentaDestino.depositarDinero(this.valor);
+    @Override
+    public void realizarTransaccion() {
+        if (cuentaOrigen.validarRetiro(getValor())) {
+            cuentaOrigen.retirarDinero(getValor());
+            cuentaDestino.depositarDinero(getValor());
         }
     }
 
-
     // Getters y Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Cuenta getCuentaOrigen() {
         return cuentaOrigen;
     }
@@ -69,35 +63,4 @@ public class Transferencia {
         this.cuentaDestino = cuentaDestino;
     }
 
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getConcepto() {
-        return concepto;
-    }
-
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 }

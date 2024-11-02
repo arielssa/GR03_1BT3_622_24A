@@ -43,7 +43,7 @@ public class IngresoServlet extends HttpServlet {
             ingreso.setFecha(LocalDateTime.now());
 
 
-            ingreso.registrarIngreso();
+            ingreso.realizarTransaccion();
 
             ingresoDAO.save(ingreso);
             cuentaDAO.update(cuentaDestino);

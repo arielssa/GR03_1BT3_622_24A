@@ -5,16 +5,13 @@ import com.monedero.dao.IngresoDAO;
 import com.monedero.dao.TransferenciaDAO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestorTransacciones {
 
     private Cuenta cuenta;
-    private List<Ingreso> ingresos;
-    private List<Egreso> egresos;
-    private List<Transferencia> transferencias;
+    private List<Transaccion> transacciones;
     IngresoDAO ingresoDAO;
     EgresoDAO egresoDAO;
     TransferenciaDAO transferenciaDAO;
@@ -28,83 +25,49 @@ public class GestorTransacciones {
     }
 
     public void cargarTransacciones() {
-        this.ingresos = ingresoDAO.findByCuentaDestino(this.cuenta);
-        this.egresos = egresoDAO.findByCuentaOrigen(this.cuenta);
-        this.transferencias = transferenciaDAO.findByCuentaAsociada(this.cuenta);
+        this.transacciones = new ArrayList<>();
+        transacciones.addAll(ingresoDAO.findByCuentaDestino(cuenta));
+        transacciones.addAll(egresoDAO.findByCuentaOrigen(cuenta));
+        transacciones.addAll(transferenciaDAO.findByCuentaAsociada(cuenta));
     }
 
-    public void agregarIngreso(Ingreso ingreso) {
-        this.ingresos.add(ingreso);
+    public void addTransaccion(Transaccion transaccion) {
+        transacciones.add(transaccion);
     }
 
-    public void agregarEgreso(Egreso egreso) {
-        this.egresos.add(egreso);
-    }
+    public List<Transaccion> filtrarTransaccionesPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
+        List<Transaccion> transaccionesPorFecha = new ArrayList<>();
 
-    public void agregarTransferencia(Transferencia transferencia) {
-        this.transferencias.add(transferencia);
-    }
-
-    public List<Ingreso> obtenerIngresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
-        List<Ingreso> ingresosPorFecha = new ArrayList<>();
-
-        for (Ingreso ingreso : ingresos) {
-            LocalDate fechaIngreso = ingreso.getFecha().toLocalDate();
-            boolean dentroDeRango = !fechaIngreso.isBefore(fechaInicio) && !fechaIngreso.isAfter(fechaFin);
+        for (Transaccion transaccion : transacciones) {
+            LocalDate fechaTransaccion = transaccion.getFecha().toLocalDate();
+            boolean dentroDeRango = (!fechaTransaccion.isBefore(fechaInicio) && !fechaTransaccion.isAfter(fechaFin));
 
             if (dentroDeRango) {
-                ingresosPorFecha.add(ingreso);
+                transaccionesPorFecha.add(transaccion);
             }
         }
 
-        return ingresosPorFecha;
+        return transaccionesPorFecha;
     }
 
 
-    public List<Egreso> obtenerEgresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
-        List<Egreso> egresosPorFecha = new ArrayList<>();
-
-        for (Egreso egreso : egresos) {
-            LocalDate fechaEgreso = egreso.getFecha().toLocalDate();
-            boolean dentroDeRango = !fechaEgreso.isBefore(fechaInicio) && !fechaEgreso.isAfter(fechaFin);
-
-            if (dentroDeRango) {
-                egresosPorFecha.add(egreso);
+    public <T extends Transaccion> List<T> filtrarTransaccionesPorTipo(List<Transaccion> transacciones, Class<T> tipoClase) {
+        List<T> resultado = new ArrayList<>();
+        for (Transaccion transaccion : transacciones) {
+            if (tipoClase.isInstance(transaccion)) {
+                resultado.add(tipoClase.cast(transaccion));
             }
         }
-
-        return egresosPorFecha;
+        return resultado;
     }
 
-    public List<Transferencia> obtenerTransferenciasPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
-        List<Transferencia> transferenciasPorFecha = new ArrayList<>();
-
-        for (Transferencia transferencia : transferencias) {
-            if (!transferencia.getFecha().toLocalDate().isBefore(fechaInicio) && !transferencia.getFecha().toLocalDate().isAfter(fechaFin)) {
-                transferenciasPorFecha.add(transferencia);
-            }
-        }
-        return transferenciasPorFecha;
-    }
-
-    public double obtenerTotalIngresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
+    public double calcularTotalTransacciones(List<Transaccion> transacciones) {
         double total = 0;
 
-        for (Ingreso ingreso : this.obtenerIngresosPorFecha(fechaInicio, fechaFin)) {
-            total += ingreso.getValor();
+        for (Transaccion transaccion : transacciones) {
+            total += transaccion.getValor();
         }
 
         return total;
     }
-
-    public double obtenerTotalEgresosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
-        double total = 0;
-
-        for (Egreso egreso : this.obtenerEgresosPorFecha(fechaInicio, fechaFin)) {
-            total += egreso.getValor();
-        }
-
-        return total;
-    }
-
 }

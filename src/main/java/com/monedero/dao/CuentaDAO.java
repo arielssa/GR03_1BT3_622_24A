@@ -15,9 +15,9 @@ public class CuentaDAO extends BaseDAO<Cuenta> {
 
     public List<Cuenta> findByUsuario(Usuario usuario) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List<Cuenta> cuentas = session.createQuery("from Cuenta", Cuenta.class).getResultList();
-
-            return cuentas;
+            Query<Cuenta> query = session.createQuery("FROM Cuenta WHERE usuario = :usuario", Cuenta.class);
+            query.setParameter("usuario", usuario);
+            return query.getResultList();
         }
     }
 

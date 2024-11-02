@@ -1,10 +1,7 @@
 package com.monedero.controller;
 
 import com.monedero.dao.CuentaDAO;
-import com.monedero.model.Egreso;
-import com.monedero.model.GestorTransacciones;
-import com.monedero.model.Ingreso;
-import com.monedero.model.Transferencia;
+import com.monedero.model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,19 +37,20 @@ public class MovimientosServlet extends HttpServlet {
 
         if ("ingresos".equals(action)) {
             // Obtener los ingresos en el rango de fechas
-            List<Ingreso> ingresos = gestorTransacciones.obtenerIngresosPorFecha(fechaInicio, fechaFin);
+            List<Transaccion> transacciones = gestorTransacciones.filtrarTransaccionesPorFecha(fechaInicio, fechaFin);
+            List<Ingreso> ingresos = gestorTransacciones.filtrarTransaccionesPorTipo(transacciones, Ingreso.class);
             request.setAttribute("movimientos", ingresos);
             request.setAttribute("tipo", "Ingresos");
             request.getRequestDispatcher("mostrarMovimientos.jsp").forward(request, response);
         } else if ("egresos".equals(action)) {
             // Obtener los egresos en el rango de fechas
-            List<Egreso> egresos = gestorTransacciones.obtenerEgresosPorFecha(fechaInicio, fechaFin);
+            List<Egreso> egresos = gestorTransacciones.filtrarTransaccionesPorTipo(gestorTransacciones.filtrarTransaccionesPorFecha(fechaInicio, fechaFin), Egreso.class);
             request.setAttribute("movimientos", egresos);
             request.setAttribute("tipo", "Egresos");
             request.getRequestDispatcher("mostrarMovimientos.jsp").forward(request, response);
         } else if ("transferencias".equals(action)) {
             // Obtener las transferencias en el rango de fechas
-            List<Transferencia> transferencias = gestorTransacciones.obtenerTransferenciasPorFecha(fechaInicio, fechaFin);
+            List<Transferencia> transferencias = gestorTransacciones.filtrarTransaccionesPorTipo(gestorTransacciones.filtrarTransaccionesPorFecha(fechaInicio, fechaFin), Transferencia.class);
             request.setAttribute("movimientos", transferencias);
             request.setAttribute("tipo", "Transferencias");
             request.getRequestDispatcher("mostrarMovimientos.jsp").forward(request, response);
