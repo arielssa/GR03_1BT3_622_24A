@@ -37,16 +37,15 @@ public class EgresoServlet extends HttpServlet {
             Cuenta cuentaOrigen = cuentaDAO.findById(cuentaId);
             if (cuentaOrigen.getBalance() >= valor) {
                 Egreso egreso = new Egreso(cuentaOrigen, valor, concepto, categoria);
-                egreso.setCuentaOrigen(cuentaOrigen);
-                egreso.setValor(valor);
-                egreso.setConcepto(concepto);
-                egreso.setCategoria(categoria);
                 egreso.setFecha(LocalDateTime.now());
 
-                egreso.realizarTransaccion();
-
-                egresoDAO.save(egreso);
-                cuentaDAO.update(cuentaOrigen);
+                try {
+                    egreso.realizarTransaccion();
+                    egresoDAO.save(egreso);
+                    cuentaDAO.update(cuentaOrigen);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 response.sendRedirect("cuenta");
             } else {

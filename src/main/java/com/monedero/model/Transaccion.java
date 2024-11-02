@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 public abstract class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    protected int id;
 
-    private double valor;
-    private String concepto;
-    private LocalDateTime fecha;
-    private String categoria;
+    protected double valor;
+    protected String concepto;
+    protected LocalDateTime fecha;
+    protected String categoria;
 
     // Constructores
     public Transaccion() {
@@ -38,6 +38,13 @@ public abstract class Transaccion {
     // Métodos
 
     public abstract void realizarTransaccion();
+
+    protected boolean validarValor() {
+        if (this.valor <= 0) {
+            throw new IllegalArgumentException("El valor de la transacción no puede ser menor o igual a 0.");
+        }
+        return true;
+    }
 
     // Getters y Setters
     public int getId() {

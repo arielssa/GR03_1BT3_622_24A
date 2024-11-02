@@ -75,7 +75,7 @@
   </dependencies>
 
   <build>
-    <finalName>RegistroAgricola</finalName>
+    <finalName>MonederoVirtual</finalName>
     <plugins>
       <!-- Plugin para compilar JSPs -->
       <plugin>

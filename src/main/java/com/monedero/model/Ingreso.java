@@ -35,7 +35,8 @@ public class Ingreso extends Transaccion {
     // Métodos
     @Override
     public void realizarTransaccion() {
-        cuentaDestino.depositarDinero(getValor());
+        validarValor();
+        cuentaDestino.depositarDinero(this.valor);
     }
 
     // Getters y Setters

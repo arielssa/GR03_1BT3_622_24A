@@ -38,18 +38,17 @@ public class TransferenciaServlet extends HttpServlet {
             Cuenta cuentaDestino = cuentaDAO.findById(cuentaDestinoId);
 
             if (cuentaOrigen.getBalance() >= valor) {
-                Transferencia transferencia = new Transferencia();
-                transferencia.setCuentaOrigen(cuentaOrigen);
-                transferencia.setCuentaDestino(cuentaDestino);
-                transferencia.setValor(valor);
-                transferencia.setConcepto(concepto);
+                Transferencia transferencia = new Transferencia(cuentaOrigen, cuentaDestino, valor, concepto);
                 transferencia.setFecha(LocalDateTime.now());
 
-                transferencia.realizarTransaccion();
-
-                transferenciaDAO.save(transferencia);
-                cuentaDAO.update(cuentaOrigen);
-                cuentaDAO.update(cuentaDestino);
+                try {
+                    transferencia.realizarTransaccion();
+                    transferenciaDAO.save(transferencia);
+                    cuentaDAO.update(cuentaOrigen);
+                    cuentaDAO.update(cuentaDestino);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 response.sendRedirect("cuenta");
             } else {

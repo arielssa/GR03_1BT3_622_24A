@@ -35,19 +35,16 @@ public class IngresoServlet extends HttpServlet {
             String categoria = request.getParameter("categoria");
 
             Cuenta cuentaDestino = cuentaDAO.findById(cuentaId);
-            Ingreso ingreso = new Ingreso();
-            ingreso.setCuentaDestino(cuentaDestino);
-            ingreso.setValor(valor);
-            ingreso.setConcepto(concepto);
-            ingreso.setCategoria(categoria);
+            Ingreso ingreso = new Ingreso(cuentaDestino, valor, concepto, categoria);
             ingreso.setFecha(LocalDateTime.now());
 
-
-            ingreso.realizarTransaccion();
-
-            ingresoDAO.save(ingreso);
-            cuentaDAO.update(cuentaDestino);
-
+            try {
+                ingreso.realizarTransaccion();
+                ingresoDAO.save(ingreso);
+                cuentaDAO.update(cuentaDestino);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
 
             response.sendRedirect("cuenta");
         }

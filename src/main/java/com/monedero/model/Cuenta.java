@@ -24,6 +24,7 @@ public class Cuenta {
 
     // Constructores
     public Cuenta() {
+        balance = 0;
     }
 
     public Cuenta(String nombre, String numeroCuenta, Usuario usuario, double balance) {

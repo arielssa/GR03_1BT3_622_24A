@@ -40,9 +40,11 @@ public class Transferencia extends Transaccion {
     // Métodos
     @Override
     public void realizarTransaccion() {
-        if (cuentaOrigen.validarRetiro(getValor())) {
-            cuentaOrigen.retirarDinero(getValor());
-            cuentaDestino.depositarDinero(getValor());
+        if (validarValor() && cuentaOrigen.validarRetiro(this.valor)) {
+            cuentaOrigen.retirarDinero(this.valor);
+            cuentaDestino.depositarDinero(this.valor);
+        } else {
+            throw new RuntimeException("Saldo insuficiente para realizar la transferencia.");
         }
     }
 
