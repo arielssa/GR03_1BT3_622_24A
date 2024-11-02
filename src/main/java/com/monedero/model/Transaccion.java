@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class Transaccion {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected int id;
 
     protected double valor;
