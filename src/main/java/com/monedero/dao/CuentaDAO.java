@@ -21,6 +21,14 @@ public class CuentaDAO extends BaseDAO<Cuenta> {
         }
     }
 
+    public Cuenta findById(int id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Cuenta> query = session.createQuery("FROM Cuenta WHERE id = :id", Cuenta.class);
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        }
+    }
+
     public Cuenta findByNumeroCuenta(String numeroCuenta) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Cuenta> query = session.createQuery("FROM Cuenta WHERE numeroCuenta = :numeroCuenta", Cuenta.class);

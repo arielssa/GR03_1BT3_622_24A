@@ -22,16 +22,21 @@ public class Cuenta {
     @Column(name = "balance")
     private double balance;
 
+    @Column(name = "balance_limite")
+    private double balanceLimite;
+
     // Constructores
     public Cuenta() {
         balance = 0;
+        this.balanceLimite = 0;
     }
 
-    public Cuenta(String nombre, String numeroCuenta, Usuario usuario, double balance) {
+    public Cuenta(String nombre, String numeroCuenta, Usuario usuario, double balance, double balanceLimite) {
         this.nombre = nombre;
         this.numeroCuenta = numeroCuenta;
         this.usuario = usuario;
         this.balance = balance;
+        this.balanceLimite = balanceLimite;
     }
 
     // Métodos
@@ -87,5 +92,13 @@ public class Cuenta {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public double getBalanceLimite() {
+        return balanceLimite;
+    }
+
+    public void setBalanceLimite(double balanceLimite) {
+        this.balanceLimite = balanceLimite;
     }
 }
