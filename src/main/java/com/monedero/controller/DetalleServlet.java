@@ -1,6 +1,7 @@
 package com.monedero.controller;
 
 import com.monedero.dao.CuentaDAO;
+import com.monedero.dao.EtiquetaDAO;
 import com.monedero.model.*;
 
 import java.io.IOException;
@@ -15,10 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/detalleCuenta")
 public class DetalleServlet extends HttpServlet {
     private CuentaDAO cuentaDAO;
+    private EtiquetaDAO etiquetaDAO;
 
     @Override
     public void init() {
         cuentaDAO = new CuentaDAO();
+        etiquetaDAO = new EtiquetaDAO();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +35,9 @@ public class DetalleServlet extends HttpServlet {
             if (cuenta != null) {
                 request.setAttribute("cuenta", cuenta);
                 request.setAttribute("cuentaId", cuentaId);
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+                List<Etiqueta> etiquetas = etiquetaDAO.findByUsuario(usuario);
+                request.setAttribute("etiquetas", etiquetas);
                 request.getRequestDispatcher("detalleCuenta.jsp").forward(request, response);
             } else {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Cuenta no encontrada.");
