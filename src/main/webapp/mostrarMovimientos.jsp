@@ -4,27 +4,33 @@
 <html>
 <head>
     <title>${tipo}</title>
+    <link rel="stylesheet" type="text/css" href="styles/mostrarMovimientos.css" >
 </head>
-<body>
-<h2>${tipo} en el rango de fechas seleccionado</h2>
-<table border="1">
-    <tr>
-        <th>Fecha</th>
-        <th>Valor</th>
-        <th>Concepto</th>
-        <th>Categoría</th>
-    </tr>
-    <c:forEach var="movimiento" items="${movimientos}">
-        <tr>
-            <td>${movimiento.fecha}</td>
-            <td>${movimiento.valor}</td>
-            <td>${movimiento.concepto}</td>
-            <td>${movimiento.categoria}</td>
+<body id="cuerpo-movimientos">
+    <h2 id="titulo-movimientos">${tipo} de la cuenta</h2>
+    <table border="1">
+        <tr id="encabezado-tabla">
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Valor</th>
+            <th>Concepto</th>
+            <th>Etiqueta</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach var="item" items="${movimientosConTipo}">
+            <tr>
+                <td class="celda-info">${item.tipo}</td>
+                <td class="celda-info">${item.transaccion.fecha}</td>
+                <td class="celda-info">${item.transaccion.valor}</td>
+                <td class="celda-info">${item.transaccion.concepto}</td>
+                <td class="celda-info">${item.transaccion.etiqueta.nombre}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
-<br>
-<a href="detalleCuenta?cuentaId=${cuentaId}">Volver a Detalles de la Cuenta</a>
+    <br>
+    <!-- Enlace para volver a detalles de la cuenta -->
+    <div id="enlace-volver-detalles">
+        <a href="detalleCuenta?cuentaId=${cuentaId}" class="enlace-volver-detalles">Volver a Detalles de la Cuenta</a>
+    </div>
 </body>
 </html>
