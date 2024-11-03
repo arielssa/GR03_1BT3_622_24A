@@ -35,6 +35,17 @@ public class GestorTransacciones {
         transacciones.add(transaccion);
     }
 
+    public List<Transaccion> filtrarTransaccionPorCategoria(String categoria) {
+        List<Transaccion> transaccionesPorCategoria = new ArrayList<>();
+        for (Transaccion transaccion : transacciones) {
+            if (transaccion.getCategoria().equals(categoria)) {
+                transaccionesPorCategoria.add(transaccion);
+            }
+        }
+        return transaccionesPorCategoria;
+    }
+
+
     public List<Transaccion> filtrarTransaccionesPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         List<Transaccion> transaccionesPorFecha = new ArrayList<>();
 
