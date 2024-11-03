@@ -34,8 +34,9 @@ public class CuentaServlet extends HttpServlet {
             String nombre = request.getParameter("nombre");
             String numeroCuenta = request.getParameter("numeroCuenta");
             double balance = Double.parseDouble(request.getParameter("balance"));
+            double balanceLimite = Double.parseDouble(request.getParameter("balanceLimite"));
 
-            Cuenta cuenta = new Cuenta(nombre, numeroCuenta, usuario, balance);
+            Cuenta cuenta = new Cuenta(nombre, numeroCuenta, usuario, balance, balanceLimite);
 
             cuentaDAO.save(cuenta);
 
@@ -45,7 +46,9 @@ public class CuentaServlet extends HttpServlet {
         if("actualizarBalanceLimite".equals(action)) {
 
             int cuentaId = Integer.parseInt(request.getParameter("cuentaId"));
+            double balanceLimite = Double.parseDouble(request.getParameter("balanceLimite"));
             Cuenta cuenta = cuentaDAO.findById(cuentaId);
+            cuenta.setBalanceLimite(balanceLimite);
             cuentaDAO.update(cuenta);
             response.sendRedirect("cuenta");
         }
@@ -66,7 +69,7 @@ public class CuentaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
         request.setAttribute("cuentas", cuentaDAO.findByUsuario(usuario));
-        // request.setAttribute("etiquetas", etiquetaDAO.findByUsuario(usuario));
+        request.setAttribute("etiquetas", etiquetaDAO.findByUsuario(usuario));
         request.getRequestDispatcher("cuenta.jsp").forward(request, response);
     }
 }
