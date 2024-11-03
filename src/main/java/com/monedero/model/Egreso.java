@@ -15,8 +15,8 @@ public class Egreso extends Transaccion {
     public Egreso() {
     }
 
-    public Egreso(Cuenta cuentaOrigen, double valor, String concepto, String categoria) {
-        super(valor, concepto, categoria);
+    public Egreso(Cuenta cuentaOrigen, double valor, String concepto, Etiqueta etiqueta) {
+        super(valor, concepto, etiqueta);
         this.cuentaOrigen = cuentaOrigen;
     }
 

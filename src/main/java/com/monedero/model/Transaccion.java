@@ -12,16 +12,19 @@ public abstract class Transaccion {
     protected double valor;
     protected String concepto;
     protected LocalDateTime fecha;
-    protected String categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "etiqueta_id")
+    protected Etiqueta etiqueta;
 
     // Constructores
     public Transaccion() {
     }
 
-    public Transaccion(double valor, String concepto, String categoria) {
+    public Transaccion(double valor, String concepto, Etiqueta etiqueta) {
         this.valor = valor;
         this.concepto = concepto;
-        this.categoria = categoria;
+        this.etiqueta = etiqueta;
     }
 
     public Transaccion(double valor, String concepto) {
@@ -31,8 +34,6 @@ public abstract class Transaccion {
 
     public Transaccion(double valor) {
         this.valor = valor;
-        this.concepto = "Sin Concepto";
-        this.categoria = "Sin Categoria";
     }
 
     // Métodos
@@ -71,12 +72,12 @@ public abstract class Transaccion {
         this.concepto = concepto;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public Etiqueta getEtiqueta() {
+        return etiqueta;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setEtiqueta(Etiqueta categoria) {
+        this.etiqueta = categoria;
     }
 
     public LocalDateTime getFecha() {

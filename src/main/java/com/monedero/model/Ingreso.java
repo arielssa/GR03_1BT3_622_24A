@@ -17,8 +17,8 @@ public class Ingreso extends Transaccion {
     public Ingreso() {
     }
 
-    public Ingreso(Cuenta cuentaDestino, double valor, String concepto, String categoria) {
-        super(valor, concepto, categoria);
+    public Ingreso(Cuenta cuentaDestino, double valor, String concepto, Etiqueta etiqueta) {
+        super(valor, concepto, etiqueta);
         this.cuentaDestino = cuentaDestino;
     }
 

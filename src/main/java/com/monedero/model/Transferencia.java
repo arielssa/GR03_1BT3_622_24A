@@ -19,8 +19,8 @@ public class Transferencia extends Transaccion {
     public Transferencia() {
     }
 
-    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor, String concepto, String categoria) {
-        super(valor, concepto, categoria);
+    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor, String concepto, Etiqueta etiqueta) {
+        super(valor, concepto, etiqueta);
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
     }
