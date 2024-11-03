@@ -10,7 +10,27 @@
   <link rel="stylesheet" type="text/css" href="styles/cuenta.css">
 </head>
 <body class="main-body">
-
+<%
+  if ("SobrepasoLimite".equals(error)) {
+%>
+<script>
+  alert("Alerta: Ha sobrepasado el límite configurado de balance. Evite realizar más egresos.");
+</script>
+<%
+} else if ("EstaEnLimite".equals(error)) {
+%>
+<script>
+  alert("Alerta: Esta en el límite configurado de balance.");
+</script>
+<%
+} else if ("EstaCercaLimite".equals(error)) {
+%>
+<script>
+  alert("Alerta: Esta cerca del límite configurado de balance.");
+</script>
+<%
+  }
+%>
 <h2 class="welcome-message">Bienvenido, ${usuario.nombre}</h2>
 <h3 class="section-title">Mis Cuentas</h3>
 <table class="account-table" border="1">
@@ -19,6 +39,7 @@
     <th class="header-name">Nombre</th>
     <th class="header-account-number">Número de Cuenta</th>
     <th class="header-balance">Balance</th>
+    <th class="header-balance-limit">Balance Límite</th>
     <th class="header-actions">Acciones</th>
   </tr>
   <c:forEach var="cuenta" items="${cuentas}">
@@ -27,6 +48,7 @@
       <td class="account-name">${cuenta.nombre}</td>
       <td class="account-number">${cuenta.numeroCuenta}</td>
       <td class="account-balance">${cuenta.balance}</td>
+      <td class="account-balance-limit">${cuenta.balanceLimite}</td>
       <td class="account-actions">
         <form action="detalleCuenta" method="get" class="details-form">
           <input type="hidden" name="cuentaId" value="${cuenta.id}">
@@ -86,6 +108,7 @@
   <input type="text" name="nombre" placeholder="Nombre de la cuenta" required class="input-account-name">
   <input type="text" name="numeroCuenta" placeholder="Número de cuenta" required class="input-account-number">
   <input type="number" name="balance" placeholder="Balance inicial" required class="input-balance">
+  <input type="number" name="balanceLimite" placeholder="Balance Limite" required class="input-balance-limit">
   <button type="submit" class="create-account-button">Crear Cuenta</button>
 </form>
 <br>
