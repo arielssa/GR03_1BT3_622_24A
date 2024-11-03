@@ -17,7 +17,16 @@
         <p class="detalle-cuenta"><strong>Nombre de la cuenta:</strong> ${cuenta.nombre}</p>
         <p class="detalle-cuenta"><strong>Número de cuenta:</strong> ${cuenta.numeroCuenta}</p>
         <p class="detalle-cuenta"><strong>Balance:</strong> ${cuenta.balance}</p>
+        <p class="detalle-cuenta"><strong>Balance Límite:</strong> ${cuenta.balanceLimite}</p>
     </section>
+
+    <br>
+    <form action="cuenta" method="post">
+        <input type="hidden" name="action" value="actualizarBalanceLimite">
+        <input type="hidden" name="cuentaId" value="${cuenta.id}">
+        <input type="number" name="balanceLimite" placeholder="Balance Limite" required>
+        <button type="submit">Actualizar Balance Limite</button>
+    </form>
 
     <!-- Formulario para ver todas las transacciones sin filtros -->
     <h3>Ver Todas las Transacciones</h3>
