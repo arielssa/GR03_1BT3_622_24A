@@ -1,0 +1,198 @@
+/* Estilos generales del cuerpo */
+body.main-body {
+    font-family: 'Roboto', sans-serif; /* Fuente robusta y legible */
+    background-color: #2D2F33; /* Fondo oscuro neutro */
+    color: #E0E0E0; /* Texto claro para buen contraste */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos del encabezado */
+.welcome-message {
+    color: #F4F4F9; /* Blanco suave para el encabezado */
+    font-size: 2em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Sombra para resaltar */
+}
+
+.section-title {
+    color: #F4F4F9; /* Blanco suave para subtítulos */
+    font-size: 1.6em;
+    margin-top: 15px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Sombra para resaltar */
+}
+
+/* Estilos de la tabla */
+.account-table {
+    width: 90%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #3A3C42; /* Fondo oscuro para la tabla */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Sombra fuerte para profundidad */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Mantiene la forma de la tabla */
+}
+
+.table-header th {
+    background-color: #555B6E; /* Gris oscuro para el encabezado de la tabla */
+    color: #FFFFFF;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #2D2F33; /* Línea inferior oscura */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Sombra para mayor legibilidad */
+}
+
+.account-row td {
+    padding: 10px;
+    border-bottom: 1px solid #4B4E54; /* Borde gris oscuro */
+    color: #E0E0E0;
+    text-align: left;
+}
+
+.account-row:nth-child(even) {
+    background-color: #3F4249; /* Gris oscuro suave para filas alternadas */
+}
+
+.account-row:hover {
+    background-color: #5A5E6B; /* Gris intermedio para hover */
+    color: #FFFFFF;
+}
+
+/* Borde inferior de la última fila para cerrar la tabla */
+.account-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: #444752; /* Fondo gris oscuro para el formulario */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra profunda */
+}
+
+form input, form button {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #656875; /* Borde gris oscuro */
+    border-radius: 4px;
+    font-size: 1em;
+    color: #E0E0E0;
+    background-color: #2D2F33; /* Fondo oscuro para inputs */
+}
+
+/* Colores para los inputs y botones */
+.input-value, .input-concept, .input-category, .input-destination-id, .input-account-name, .input-account-number, .input-balance {
+    flex: 1 1 45%;
+}
+
+/* Botones generales */
+button {
+    color: #FFFFFF;
+    cursor: pointer;
+    flex: 1 1 45%;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para elevar el botón */
+}
+
+/* Botón Ver Detalles */
+.details-button {
+    background-color: #4A90E2; /* Azul para información */
+}
+
+.details-button:hover {
+    background-color: #5AA3F0; /* Azul más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Botón Ingresar */
+.income-button {
+    background-color: #4CAF50; /* Verde para ingreso */
+}
+
+.income-button:hover {
+    background-color: #66BB6A; /* Verde más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Botón Egresar */
+.expense-button {
+    background-color: #E53935; /* Rojo para egreso */
+}
+
+.expense-button:hover {
+    background-color: #EF5350; /* Rojo más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Botón Transferir */
+.transfer-button {
+    background-color: #FFA726; /* Naranja para transferir */
+}
+
+.transfer-button:hover {
+    background-color: #FFB74D; /* Naranja más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Botón Crear Cuenta */
+.create-account-button {
+    background-color: #5C6BC0; /* Azul oscuro para crear cuenta */
+}
+
+.create-account-button:hover {
+    background-color: #7986CB; /* Azul un poco más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Estilos para los enlaces */
+.navigation-links a {
+    color: #B0BEC5; /* Gris claro para enlaces */
+    text-decoration: none;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.navigation-links a:hover {
+    color: #E0E0E0; /* Blanco suave en hover */
+    text-decoration: underline;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .account-table, .account-row, .table-header th, .account-row td {
+        font-size: 0.9em;
+    }
+    
+    form {
+        flex-direction: column;
+    }
+
+    form input, form button {
+        flex: 1 1 100%;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-message {
+        font-size: 1.5em;
+    }
+    
+    .section-title {
+        font-size: 1.2em;
+    }
+
+    .account-table, .account-row, .table-header th, .account-row td {
+        font-size: 0.8em;
+    }
+}
