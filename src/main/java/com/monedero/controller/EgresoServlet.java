@@ -59,6 +59,15 @@ public class EgresoServlet extends HttpServlet {
                     e.printStackTrace();
                 }
 
+                if((balanceTemp - valor) < cuentaOrigen.getBalanceLimite()){
+                    response.sendRedirect("cuenta?error=SobrepasoLimite");
+                } else if ((balanceTemp - valor) == cuentaOrigen.getBalanceLimite()) {
+                    response.sendRedirect("cuenta?error=EstaEnLimite");
+                } else if (((balanceTemp - valor) - cuentaOrigen.getBalanceLimite()) > 0 &&
+                        ((balanceTemp - valor) - cuentaOrigen.getBalanceLimite()) < 11) {
+                    response.sendRedirect("cuenta?error=EstaCercaLimite");
+                }
+
             } else {
                 response.sendRedirect("cuenta?error=SaldoInsuficiente");
             }
