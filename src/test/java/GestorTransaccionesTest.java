@@ -18,8 +18,8 @@ public class GestorTransaccionesTest {
     @BeforeEach
     public void setUp() {
         // Crear objetos simulados para pruebas
-        Cuenta cuenta = new Cuenta("Mi cuenta", "1", new Usuario(), 1000);
-        Cuenta cuenta2 = new Cuenta("Mi cuenta 2", "1", new Usuario(), 1000);
+        Cuenta cuenta = new Cuenta("Mi cuenta", "1", new Usuario(), 1000, 100);
+        Cuenta cuenta2 = new Cuenta("Mi cuenta 2", "1", new Usuario(), 1000, 100);
 
         // Crear etiquetas y transacciones simuladas
         Etiqueta etiqueta1 = new Etiqueta("Alimentación");

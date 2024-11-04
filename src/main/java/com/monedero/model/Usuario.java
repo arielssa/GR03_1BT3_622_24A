@@ -1,6 +1,7 @@
 package com.monedero.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -17,6 +18,9 @@ public class Usuario {
 
     @Column(name = "contrasena")
     private String contrasena;
+
+    @OneToMany
+    private List<Etiqueta> etiquetas;
 
     // Getters y Setters
     public int getId() {

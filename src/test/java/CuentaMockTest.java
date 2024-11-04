@@ -22,7 +22,7 @@ public class CuentaMockTest {
         when(usuarioMock.getNombre()).thenReturn("Usuario Mock");
 
         // Inicializar la cuenta con el mock de Usuario
-        cuenta = new Cuenta("Cuenta Mock", "111222333", usuarioMock, 500.00);
+        cuenta = new Cuenta("Cuenta Mock", "111222333", usuarioMock, 500.00, 100);
     }
 
     @Test

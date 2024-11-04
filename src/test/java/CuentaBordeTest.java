@@ -12,7 +12,7 @@ public class CuentaBordeTest {
     @BeforeEach
     public void setUp() {
         Usuario usuario = new Usuario();
-        cuenta = new Cuenta("Cuenta Borde", "987654321", usuario, 100.00); // Balance inicial de 100
+        cuenta = new Cuenta("Cuenta Borde", "987654321", usuario, 100.0, 100); // Balance inicial de 100
     }
 
     @Test

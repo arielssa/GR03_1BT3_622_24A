@@ -15,7 +15,7 @@ public class CuentaRendimientoTest {
     @BeforeEach
     public void setUp() {
         Usuario usuario = new Usuario();
-        cuenta = new Cuenta("Cuenta Ahorro", "123456789", usuario, 1000.00);
+        cuenta = new Cuenta("Cuenta Ahorro", "123456789", usuario, 1000.00, 100);
     }
 
     @Test
