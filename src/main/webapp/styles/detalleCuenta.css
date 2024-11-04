@@ -1,0 +1,181 @@
+/* Estilos generales del cuerpo */
+body#cuerpo-detalle-cuenta {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título de la página */
+#titulo-detalles-cuenta {
+    color: #F4F4F9;
+    font-size: 2em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Sección de información de la cuenta */
+#informacion-cuenta {
+    width: 80%;
+    max-width: 600px;
+    background-color: #3A3C42;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+.detalle-cuenta {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #E0E0E0;
+}
+
+.detalle-cuenta strong {
+    color: #FFB74D; /* Color específico para destacar etiquetas */
+}
+
+/* Estilos de los formularios */
+.formulario-detalle {
+    width: 80%;
+    max-width: 600px;
+    background-color: #444752;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-detalle input,
+.formulario-detalle select,
+.formulario-detalle button {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #656875;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #E0E0E0;
+    background-color: #2D2F33;
+}
+
+/* Botones de formulario */
+.boton-actualizar,
+.boton-todas-transacciones,
+.boton-consulta {
+    background-color: #4A90E2;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.boton-actualizar:hover,
+.boton-todas-transacciones:hover,
+.boton-consulta:hover {
+    background-color: #5AA3F0;
+    transform: translateY(-2px);
+}
+
+/* Etiquetas y campos de fecha */
+.etiqueta-fecha, .etiqueta-seleccion {
+    color: #F4F4F9;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.campo-fecha, .select-etiqueta {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    border: 1px solid #656875;
+    border-radius: 4px;
+}
+
+/* Botones de consulta */
+#botones-consulta-fecha .boton-consulta,
+#botones-consulta-etiqueta .boton-consulta {
+    flex: 1 1 45%;
+    margin: 5px 0;
+}
+
+/* Enlace para volver */
+#enlace-volver {
+    margin-top: 20px;
+}
+
+.enlace-volver {
+    color: #B0BEC5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.enlace-volver:hover {
+    color: #E0E0E0;
+    text-decoration: underline;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    #informacion-cuenta, .formulario-detalle {
+        width: 90%;
+    }
+
+    .formulario-detalle input,
+    .formulario-detalle select,
+    .formulario-detalle button {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    #titulo-detalles-cuenta {
+        font-size: 1.5em;
+    }
+
+    .detalle-cuenta {
+        font-size: 1em;
+    }
+}
+
+.campo-fecha {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding doesn't increase the width */
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    border: 1px solid #656875;
+    border-radius: 4px;
+    position: relative; /* Ensures icons stay inside the box */
+}
+
+.select-etiqueta {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding doesn't increase the width */
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    border: 1px solid #656875;
+    border-radius: 4px;
+    appearance: none; /* Removes default dropdown arrow for custom styling */
+    position: relative; /* Ensures dropdown arrow stays inside the box */
+}
+
+/* Optional: Style the dropdown arrow manually if needed */
+.select-etiqueta::after {
+    content: '▼'; /* Custom dropdown arrow */
+    position: absolute;
+    right: 15px; /* Position it within the padding */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Keeps the arrow from blocking clicks on the select */
+    color: #E0E0E0;
+    font-size: 0.8em;
+}

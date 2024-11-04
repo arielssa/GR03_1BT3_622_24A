@@ -1,0 +1,212 @@
+/* Estilos generales del cuerpo */
+body#main-body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Encabezado principal */
+.header {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.welcome-title {
+    color: #F4F4F9;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.subtitle {
+    color: #B0BEC5;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Descripción general */
+#description {
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #3A3C42;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.description-text {
+    font-size: 1.1em;
+    color: #E0E0E0;
+}
+
+/* Sección de opciones de acceso */
+#access-options {
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #444752;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.access-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.access-instructions {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #F4F4F9;
+}
+
+.button {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-button {
+    background-color: #4A90E2;
+}
+
+.login-button:hover {
+    background-color: #5AA3F0;
+    transform: translateY(-2px);
+}
+
+.register-button {
+    background-color: #66BB6A;
+}
+
+.register-button:hover {
+    background-color: #81C784;
+    transform: translateY(-2px);
+}
+
+/* Información adicional sobre el sistema */
+#additional-info {
+    width: 80%;
+    max-width: 700px;
+    margin-top: 30px;
+    background-color: #3A3C42;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.info-title {
+    color: #F4F4F9;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.info-text {
+    color: #E0E0E0;
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.info-list {
+    list-style-type: none;
+    padding: 0;
+    color: #B0BEC5;
+    font-size: 1.1em;
+}
+
+.info-item {
+    margin: 10px 0;
+}
+
+/* Mensaje de bienvenida adicional */
+#welcome-message {
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    margin-top: 30px;
+    background-color: #444752;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-note {
+    font-size: 1.1em;
+    color: #E0E0E0;
+}
+
+/* Información de soporte */
+#support-info {
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #3A3C42;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.support-text {
+    font-size: 1.1em;
+    color: #B0BEC5;
+}
+
+/* Pie de página */
+#footer {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    background-color: #2D2F33;
+    color: #B0BEC5;
+}
+
+.footer-text {
+    font-size: 0.9em;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    #description, #access-options, #additional-info, #welcome-message, #support-info {
+        width: 90%;
+    }
+
+    .welcome-title {
+        font-size: 2em;
+    }
+    
+    .subtitle, .description-text, .info-title, .access-instructions, .info-text, .support-text {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 1.8em;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    #footer {
+        font-size: 0.8em;
+    }
+}

@@ -3,23 +3,34 @@
 <html>
 <head>
     <title>Registro de Usuario</title>
+    <link rel="Stylesheet" type="text/css" href="styles/register.css">
 </head>
-<body>
-<h2>Registro de Usuario</h2>
-<form action="usuario" method="post">
+<body id="cuerpo-registro">
+
+<!-- Título de la página -->
+<h2 id="titulo-registro">Registro de Usuario</h2>
+
+<!-- Formulario de registro de usuario -->
+<form action="usuario" method="post" id="formulario-registro">
     <input type="hidden" name="action" value="register">
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" id="nombre" required><br><br>
 
-    <label for="nombreUsuario">Nombre de Usuario:</label>
-    <input type="text" name="nombreUsuario" id="nombreUsuario" required><br><br>
+    <!-- Campos de entrada para el formulario -->
+    <label for="nombre" class="etiqueta-formulario">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" class="campo-entrada" required><br>
 
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" name="contrasena" id="contrasena" required><br><br>
+    <label for="nombreUsuario" class="etiqueta-formulario">Nombre de Usuario:</label>
+    <input type="text" name="nombreUsuario" id="nombreUsuario" class="campo-entrada" required><br>
 
-    <button type="submit">Registrarse</button>
+    <label for="contrasena" class="etiqueta-formulario">Contraseña:</label>
+    <input type="password" name="contrasena" id="contrasena" class="campo-entrada" required><br>
+
+    <!-- Botón de registro -->
+    <button type="submit" id="boton-registrar">Registrarse</button>
 </form>
-<p>¿Ya tienes una cuenta? <a href="login.jsp">Inicia sesión aquí</a>.</p>
-<p><a href="index.jsp">Volver a inicio</a></p>
+
+<!-- Enlaces para iniciar sesión y volver a inicio -->
+<p class="texto-enlace">¿Ya tienes una cuenta? <a href="login.jsp" class="enlace-inicio-sesion">Inicia sesión aquí</a>.</p>
+<p class="texto-enlace"><a href="index.jsp" class="enlace-inicio">Volver a inicio</a></p>
+
 </body>
 </html>
