@@ -68,6 +68,7 @@ public class EgresoServlet extends HttpServlet {
                     response.sendRedirect("cuenta?error=EstaCercaLimite");
                 }
 
+                response.sendRedirect("cuenta");
             } else {
                 response.sendRedirect("cuenta?error=SaldoInsuficiente");
             }

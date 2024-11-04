@@ -1,0 +1,142 @@
+/* Estilos generales del cuerpo */
+body#login-body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Encabezado principal */
+.header {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.login-title {
+    color: #F4F4F9;
+    font-size: 2em;
+    margin: 10px 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.login-subtitle {
+    color: #B0BEC5;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Formulario de inicio de sesión */
+#login-form {
+    width: 80%;
+    max-width: 400px;
+    background-color: #3A3C42;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+.form-label {
+    color: #F4F4F9;
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    background-color: #2D2F33;
+    border: 1px solid #656875;
+    border-radius: 4px;
+    padding: 10px;
+    color: #E0E0E0;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+.input-instruction {
+    color: #B0BEC5;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+/* Botón de envío */
+.submit-button {
+    background-color: #4A90E2;
+    color: #FFFFFF;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.submit-button:hover {
+    background-color: #5AA3F0;
+    transform: translateY(-2px);
+}
+
+/* Mensaje de error */
+.error-message {
+    color: #E53935;
+    font-size: 1em;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Información adicional de registro */
+.additional-info {
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link, .home-link {
+    color: #B0BEC5;
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.link {
+    color: #4A90E2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: #5AA3F0;
+    text-decoration: underline;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    #login-form, .additional-info {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-title {
+        font-size: 1.5em;
+    }
+
+    .login-subtitle, .register-link, .home-link {
+        font-size: 0.9em;
+    }
+}

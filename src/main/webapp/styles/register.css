@@ -1,0 +1,119 @@
+/* Estilos generales del cuerpo */
+body#cuerpo-registro {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilo del título de registro */
+#titulo-registro {
+    color: #F4F4F9;
+    font-size: 2em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos del formulario de registro */
+#formulario-registro {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #444752;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px;
+}
+
+.etiqueta-formulario {
+    color: #E0E0E0;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+/* Estilos de los campos de entrada */
+.campo-entrada {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #656875;
+    border-radius: 4px;
+    background-color: #2D2F33;
+    color: #E0E0E0;
+    font-size: 1em;
+}
+
+/* Botón de registro */
+#boton-registrar {
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #4A90E2;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#boton-registrar:hover {
+    background-color: #5AA3F0;
+    transform: translateY(-2px);
+}
+
+/* Estilos de los enlaces */
+.texto-enlace {
+    color: #B0BEC5;
+    font-size: 0.9em;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.enlace-inicio-sesion, .enlace-inicio {
+    color: #B0BEC5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.enlace-inicio-sesion:hover, .enlace-inicio:hover {
+    color: #E0E0E0;
+    text-decoration: underline;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    #titulo-registro {
+        font-size: 1.8em;
+    }
+
+    #formulario-registro {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .campo-entrada {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    #titulo-registro {
+        font-size: 1.5em;
+    }
+
+    #formulario-registro {
+        padding: 10px;
+    }
+
+    .campo-entrada {
+        font-size: 0.8em;
+    }
+}
