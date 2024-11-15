@@ -28,6 +28,7 @@ public class Egreso extends Transaccion {
     public Egreso(double valor, String concepto) {
         super(valor, concepto);
     }
+
     public Egreso(Cuenta cuentaOrigen, double valor) {
         super(valor);
         this.cuentaOrigen = cuentaOrigen;
@@ -36,17 +37,19 @@ public class Egreso extends Transaccion {
     // Métodos
     @Override
     public void realizarTransaccion() {
-        if (validarValor() && cuentaOrigen.validarRetiro(this.valor)) {
+        if (validarValor() && cuentaOrigen.validarRetiro(this.valor) && !cuentaOrigen.isBloqueada()) {
             cuentaOrigen.retirarDinero(this.valor);
         } else {
             throw new RuntimeException("Saldo insuficiente para realizar el egreso.");
         }
     }
 
+
     @Override
     public double calcularBalanceAntesDeTransaccion(double saldoDespues, int cuentaId) {
         return saldoDespues + this.valor;
     }
+
     // Getters y Setters
     public Cuenta getCuentaOrigen() {
         return cuentaOrigen;
