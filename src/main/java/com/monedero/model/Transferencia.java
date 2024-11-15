@@ -1,7 +1,6 @@
 package com.monedero.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transferencias")
@@ -31,38 +30,45 @@ public class Transferencia extends Transaccion {
         this.cuentaDestino = cuentaDestino;
     }
 
-    public Transferencia(Cuenta cuentaOrigen, Cuenta cuentaDestino, double valor) {
-        super(valor);
-        this.cuentaOrigen = cuentaOrigen;
-        this.cuentaDestino = cuentaDestino;
-    }
-
-    // Métodos
-    @Override
-    public void realizarTransaccion() {
-        if (validarValor() && cuentaOrigen.validarRetiro(this.valor)) {
-            cuentaOrigen.retirarDinero(this.valor);
-            cuentaDestino.depositarDinero(this.valor);
-        } else {
-            throw new RuntimeException("Saldo insuficiente para realizar la transferencia.");
+    public Transferencia(double valor, String concepto) {
+            super(valor, concepto);
         }
-    }
 
-    // Getters y Setters
-    public Cuenta getCuentaOrigen() {
-        return cuentaOrigen;
-    }
+        // Métodos
+        @Override
+        public void realizarTransaccion() {
+            if (validarValor() && cuentaOrigen.validarRetiro(this.valor)) {
+                cuentaOrigen.retirarDinero(this.valor);
+                cuentaDestino.depositarDinero(this.valor);
+            } else {
+                throw new RuntimeException("Saldo insuficiente para realizar la transferencia.");
+            }
+        }
 
-    public void setCuentaOrigen(Cuenta cuentaOrigen) {
-        this.cuentaOrigen = cuentaOrigen;
-    }
+        // Getters y Setters
+        public Cuenta getCuentaOrigen() {
+            return cuentaOrigen;
+        }
 
-    public Cuenta getCuentaDestino() {
-        return cuentaDestino;
-    }
+        @Override
+        public double calcularBalanceAntesDeTransaccion(double saldoDespues, int cuentaId) {
+            if(this.getCuentaOrigen().getId() == cuentaId){
+                return saldoDespues + this.getValor();
+            } else if (this.getCuentaDestino().getId() == cuentaId) {
+                return saldoDespues - this.getValor();
+            }
+            return 0;
+        }
+        public void setCuentaOrigen(Cuenta cuentaOrigen) {
+            this.cuentaOrigen = cuentaOrigen;
+        }
 
-    public void setCuentaDestino(Cuenta cuentaDestino) {
-        this.cuentaDestino = cuentaDestino;
-    }
+        public Cuenta getCuentaDestino() {
+            return cuentaDestino;
+        }
 
-}
+        public void setCuentaDestino(Cuenta cuentaDestino) {
+            this.cuentaDestino = cuentaDestino;
+        }
+
+    }
