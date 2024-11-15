@@ -25,10 +25,12 @@ public class Cuenta {
     @Column(name = "balance_limite")
     private double balanceLimite;
 
+    private boolean bloqueada;
     // Constructores
     public Cuenta() {
-        balance = 0;
+        this.balance = 0;
         this.balanceLimite = 0;
+        this.bloqueada = false;
     }
 
     public Cuenta(String nombre, String numeroCuenta, Usuario usuario, double balance, double balanceLimite) {
@@ -37,6 +39,15 @@ public class Cuenta {
         this.usuario = usuario;
         this.balance = balance;
         this.balanceLimite = balanceLimite;
+        this.bloqueada = false;
+    }
+    public Cuenta(String nombre, String numeroCuenta, Usuario usuario, double balance, double balanceLimite, boolean bloqueada) {
+        this.nombre = nombre;
+        this.numeroCuenta = numeroCuenta;
+        this.usuario = usuario;
+        this.balance = balance;
+        this.balanceLimite = balanceLimite;
+        this.bloqueada = bloqueada;
     }
 
     // Métodos
@@ -100,5 +111,11 @@ public class Cuenta {
 
     public void setBalanceLimite(double balanceLimite) {
         this.balanceLimite = balanceLimite;
+    }
+    public boolean isBloqueada() {
+        return bloqueada;
+    }
+    public void setBloqueada(boolean bloqueada) {
+        this.bloqueada = bloqueada;
     }
 }
