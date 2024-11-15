@@ -37,10 +37,11 @@ public class Egreso extends Transaccion {
     // Métodos
     @Override
     public void realizarTransaccion() {
-        if (validarValor() && cuentaOrigen.validarRetiro(this.valor) && !cuentaOrigen.isBloqueada()) {
-            cuentaOrigen.retirarDinero(this.valor);
-        } else {
+        validarValor();
+        if (!cuentaOrigen.validarRetiro(this.valor)) {
             throw new RuntimeException("Saldo insuficiente para realizar el egreso.");
+        } else if (!cuentaOrigen.isBloqueada()) {
+            cuentaOrigen.retirarDinero(this.valor);
         }
     }
 
