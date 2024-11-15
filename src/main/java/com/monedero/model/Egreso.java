@@ -25,6 +25,9 @@ public class Egreso extends Transaccion {
         this.cuentaOrigen = cuentaOrigen;
     }
 
+    public Egreso(double valor, String concepto) {
+        super(valor, concepto);
+    }
     public Egreso(Cuenta cuentaOrigen, double valor) {
         super(valor);
         this.cuentaOrigen = cuentaOrigen;
@@ -40,6 +43,10 @@ public class Egreso extends Transaccion {
         }
     }
 
+    @Override
+    public double calcularBalanceAntesDeTransaccion(double saldoDespues, int cuentaId) {
+        return saldoDespues + this.valor;
+    }
     // Getters y Setters
     public Cuenta getCuentaOrigen() {
         return cuentaOrigen;

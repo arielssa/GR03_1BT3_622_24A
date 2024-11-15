@@ -2,6 +2,9 @@ package com.monedero.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class Transaccion {
@@ -40,6 +43,7 @@ public abstract class Transaccion {
 
     public abstract void realizarTransaccion();
 
+    public abstract double calcularBalanceAntesDeTransaccion(double saldoDespues, int cuentaId);
     protected boolean validarValor() {
         if (this.valor <= 0) {
             throw new IllegalArgumentException("El valor de la transacción no puede ser menor o igual a 0.");
@@ -47,6 +51,26 @@ public abstract class Transaccion {
         return true;
     }
 
+    /**
+     * Extrae la información de la transacción en un formato de arreglo de cadenas.
+     *
+     * @return Un arreglo de cadenas que contiene el tipo, fecha, valor, concepto y etiqueta de la transacción.
+     */
+    public List<String> extraerInformacionTransaccion() {
+        String tipo = this.getClass().getSimpleName();
+        String fechaTexto = fecha != null ? fecha.toString().substring(0, 10) : "Sin fecha";
+        String valorTexto = String.format("%.2f", valor);
+        String conceptoTexto = concepto != null ? concepto : "Sin concepto";
+        String etiquetaTexto = (etiqueta != null && etiqueta.getNombre() != null) ? etiqueta.getNombre() : "Sin etiqueta";
+        // Crear y devolver una lista con los valores de la transacción
+        List<String> informacionTransaccion = new ArrayList<>();
+        informacionTransaccion.add(tipo);
+        informacionTransaccion.add(fechaTexto);
+        informacionTransaccion.add(valorTexto);
+        informacionTransaccion.add(conceptoTexto);
+        informacionTransaccion.add(etiquetaTexto);
+        return informacionTransaccion;
+    }
     // Getters y Setters
     public int getId() {
         return id;

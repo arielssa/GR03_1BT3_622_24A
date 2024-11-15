@@ -27,6 +27,9 @@ public class Ingreso extends Transaccion {
         this.cuentaDestino = cuentaDestino;
     }
 
+    public Ingreso(double valor, String concepto) {
+        super(valor, concepto);
+    }
     public Ingreso(Cuenta cuentaDestino, double valor) {
         super(valor);
         this.cuentaDestino = cuentaDestino;
@@ -39,6 +42,10 @@ public class Ingreso extends Transaccion {
         cuentaDestino.depositarDinero(this.valor);
     }
 
+    @Override
+    public double calcularBalanceAntesDeTransaccion(double saldoDespues, int cuentaId) {
+        return saldoDespues - this.valor;
+    }
     // Getters y Setters
     public Cuenta getCuentaDestino() {
         return cuentaDestino;
