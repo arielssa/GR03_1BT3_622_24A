@@ -79,6 +79,20 @@
 
 <br>
 
+<!-- Formulario para exportar los movimientos en PDF -->
+<h3>Exportar Movimientos en PDF</h3>
+<form action="exportarMovimientos" method="post" id="form-exportar-pdf" class="formulario-detalle">
+    <input type="hidden" name="cuentaId" value="${cuenta.id}">
+
+    <label for="fechaInicio">Fecha de Inicio (opcional):</label>
+    <input type="date" name="fechaInicio" class="input-date">
+
+    <label for="fechaFin">Fecha de Fin (opcional):</label>
+    <input type="date" name="fechaFin" class="input-date">
+
+    <button type="submit" class="boton-consulta">Exportar a PDF</button>
+</form>
+
 <!-- Enlace para volver a la lista de cuentas -->
 <div id="enlace-volver">
     <a href="cuenta" class="enlace-volver">Volver a Mis Cuentas</a>
