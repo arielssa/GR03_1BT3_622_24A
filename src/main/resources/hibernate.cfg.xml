@@ -22,5 +22,6 @@
         <mapping class="com.monedero.model.Egreso"/>
         <mapping class="com.monedero.model.Transferencia"/>
         <mapping class="com.monedero.model.Etiqueta"/>
+        <mapping class="com.monedero.model.ObjetivoAhorro"/>
     </session-factory>
 </hibernate-configuration>
