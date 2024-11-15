@@ -8,6 +8,13 @@
 </head>
 <body id="cuerpo-detalle-cuenta">
 
+<c:if test="${not empty sessionScope.mensaje}">
+    <script>
+        alert("${sessionScope.mensaje}");
+    </script>
+    <c:remove var="mensaje" scope="session"/>
+</c:if>
+
 <!-- Título de la página -->
 <h2 id="titulo-detalles-cuenta">Detalles de la Cuenta</h2>
 
@@ -18,7 +25,23 @@
     <p class="detalle-cuenta"><strong>Número de cuenta:</strong> ${cuenta.numeroCuenta}</p>
     <p class="detalle-cuenta"><strong>Balance:</strong> ${cuenta.balance}</p>
     <p class="detalle-cuenta"><strong>Balance Límite:</strong> ${cuenta.balanceLimite}</p>
+
+    <!-- Botón para bloquear/desbloquear la cuenta -->
+    <form action="detalleCuenta" method="post" class="formulario-detalle">
+        <input type="hidden" name="cuentaId" value="${cuenta.id}">
+        <button type="submit" name="action" value="toggleBloqueo" class="boton-bloqueo">
+            <c:choose>
+                <c:when test="${cuenta.bloqueada}">
+                    Desbloquear Cuenta
+                </c:when>
+                <c:otherwise>
+                    Bloquear Cuenta
+                </c:otherwise>
+            </c:choose>
+        </button>
+    </form>
 </section>
+
 
 <br>
 <form action="cuenta" method="post" id="form-actualizar-balance" class="formulario-detalle">
