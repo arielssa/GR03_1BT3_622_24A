@@ -54,4 +54,11 @@ public class Ingreso extends Transaccion {
     public void setCuentaDestino(Cuenta cuentaDestino) {
         this.cuentaDestino = cuentaDestino;
     }
+
+    public String validarCampos() {
+        if (this.valor <= 0 || this.concepto == null || this.concepto.isEmpty() || this.cuentaDestino == null) {
+            return "Todos los campos son obligatorios";
+        }
+        return null; // No hay errores
+    }
 }

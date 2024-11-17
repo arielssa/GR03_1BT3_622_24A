@@ -26,6 +26,52 @@ public class TransaccionTest {
     }
 
     @Test
+    public void testCamposIncompletosMuestraMensajeError_Ingreso() {
+        // Crear una instancia de Ingreso sin completar todos los campos necesarios
+        Ingreso ingreso = new Ingreso();
+        ingreso.setValor(100.0); // No se establece el concepto ni la etiqueta
+
+        // Intentar validar los campos de la transacción
+        String mensajeError = ingreso.validarCampos();
+
+        // Verificar que se muestra el mensaje de error esperado
+        assertEquals("Todos los campos son obligatorios", mensajeError);
+    }
+
+    @Test
+    public void testValorNegativo_Transaccion() {
+        // Verificar que se lanza una excepción cuando se establece un valor negativo en Transaccion
+        assertThrows(IllegalArgumentException.class, () -> {
+            Transaccion transaccion = new Ingreso(-100.0, "Depósito");
+            transaccion.validarValor();
+        });
+    }
+
+    @Test
+    public void testValorNegativo_Ingreso() {
+        // Verificar que se lanza una excepción cuando se establece un valor negativo en Ingreso
+        assertThrows(IllegalArgumentException.class, () -> {
+            Ingreso ingreso = new Ingreso(-100.0, "Depósito");
+            ingreso.validarValor();
+        });
+    }
+
+    @Test
+    public void testCalcularSaldoAntesDeTransaccion_Egreso() {
+        // Crear una instancia de Egreso con un valor específico
+        Egreso egreso = new Egreso(30.0, "Compra");
+
+        // Saldo después de la transacción
+        double saldoDespues = 70.0;
+
+        // Calcular el saldo antes de la transacción
+        double saldoAntes = egreso.calcularBalanceAntesDeTransaccion(saldoDespues, 0);
+
+        // Verificar que el saldo antes sea el saldo después más el valor del egreso
+        assertEquals(100.0, saldoAntes, 0.01);
+    }
+
+    @Test
     public void testExtraerInformacionTransaccion_Egreso() {
         // Crear una instancia de Egreso con un valor y concepto específicos
         Egreso egreso = new Egreso(30.0, "Compra");

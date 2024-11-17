@@ -80,24 +80,30 @@ class CuentaBloqueoTest {
     // Prueba para verificar que no se puede realizar una transferencia desde una cuenta bloqueada
     @Test
     void testTransferenciaNoPermiteCuandoCuentaBloqueada() {
-        // Crear cuentas de origen (bloqueada) y destino con balance inicial
+        // Crear cuenta de origen (bloqueada) y destino usando Mockito para evitar interacciones con la base de datos
         Cuenta cuentaOrigen = new Cuenta();
         cuentaOrigen.depositarDinero(1000.0); // Balance inicial en cuenta de origen
-        cuentaOrigen.setBloqueada(true);
+        cuentaOrigen.setBloqueada(true);  // Marcar la cuenta como bloqueada
 
-        Cuenta cuentaDestino = new Cuenta();
-        cuentaDestino.depositarDinero(500.0); // Balance inicial en cuenta de destino
+        // Crear cuenta destino con balance simulado (no es necesario que sea real para este test)
+        Cuenta cuentaDestino = mock(Cuenta.class); // Usar un mock para la cuenta destino
+        when(cuentaDestino.getBalance()).thenReturn(500.0); // Retornar el balance de la cuenta destino
 
         // Crear una transferencia e intentar realizarla
         Transferencia transferencia = new Transferencia(cuentaOrigen, cuentaDestino, 100.0, "Pago");
-        double balanceInicialOrigen = cuentaOrigen.getBalance();
-        double balanceInicialDestino = cuentaDestino.getBalance();
-        transferencia.realizarTransaccion();
+
+        // Verificar que al intentar realizar la transferencia, se lanza una excepción
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            transferencia.realizarTransaccion();
+        });
+
+        // Verificar que el mensaje de la excepción sea el esperado
+        assertEquals("La cuenta de origen está bloqueada. No se puede realizar la transferencia.", exception.getMessage());
 
         // Verificar que los balances no han cambiado
-        assertEquals(balanceInicialOrigen, cuentaOrigen.getBalance(),
+        assertEquals(1000.0, cuentaOrigen.getBalance(),
                 "El balance de la cuenta de origen debería mantenerse sin cambios al intentar una transferencia desde una cuenta bloqueada");
-        assertEquals(balanceInicialDestino, cuentaDestino.getBalance(),
+        assertEquals(500.0, cuentaDestino.getBalance(),
                 "El balance de la cuenta de destino debería mantenerse sin cambios cuando la cuenta de origen está bloqueada");
     }
 }

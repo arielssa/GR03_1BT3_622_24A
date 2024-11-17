@@ -1,4 +1,5 @@
 import com.monedero.model.Etiqueta;
+import com.monedero.model.Transaccion;
 import com.monedero.model.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -84,4 +85,5 @@ public class EtiquetaTest {
         Optional<Etiqueta> resultado = Etiqueta.buscarEtiquetaPorNombre(etiquetas, "EtiquetaInexistente");
         assertFalse(resultado.isPresent(), "La etiqueta no debería estar presente");
     }
+
 }

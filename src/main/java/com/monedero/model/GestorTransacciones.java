@@ -7,6 +7,7 @@ import com.monedero.dao.TransferenciaDAO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GestorTransacciones {
 
@@ -28,7 +29,16 @@ public class GestorTransacciones {
     // Constructor alternativo para pruebas sin cargar datos desde los DAOs
     public GestorTransacciones(Cuenta cuenta, List<Transaccion> transacciones) {
         this.cuenta = cuenta;
-        this.transacciones = transacciones;
+        this.transacciones = transacciones.stream()
+                .filter(t -> {
+                    try {
+                        t.validarValor();
+                        return true;
+                    } catch (IllegalArgumentException e) {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
     // Método que carga las transacciones desde los DAOs
@@ -92,5 +102,9 @@ public class GestorTransacciones {
 
     public List<Transaccion> getTransacciones() {
         return transacciones;
+    }
+
+    public String getMensajeRangoInvalido() {
+        return "El rango de fechas es inválido. Por favor, cambie el rango.";
     }
 }

@@ -44,7 +44,7 @@ public abstract class Transaccion {
     public abstract void realizarTransaccion();
 
     public abstract double calcularBalanceAntesDeTransaccion(double saldoDespues, int cuentaId);
-    protected boolean validarValor() {
+    public boolean validarValor() {
         if (this.valor <= 0) {
             throw new IllegalArgumentException("El valor de la transacción no puede ser menor o igual a 0.");
         }

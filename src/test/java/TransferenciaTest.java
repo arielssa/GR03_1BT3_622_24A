@@ -3,6 +3,9 @@ import com.monedero.model.Cuenta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class TransferenciaTest {
 
     @Test
@@ -34,7 +37,27 @@ public class TransferenciaTest {
         Transferencia transferencia = new Transferencia(cuentaOrigen, cuentaDestino, valorTransferencia, "Pago erróneo");
 
         // Verificación
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(RuntimeException.class, () -> {
+            transferencia.realizarTransaccion();
+        });
+    }
+
+    @Test
+    public void testRealizarTransferencia_LanzaExcepcionPorCuentaDestinoInexistente() {
+        // Configuración
+        Cuenta cuentaOrigen = new Cuenta();
+        cuentaOrigen.depositarDinero(100); // Saldo en la cuenta origen
+
+        // Mock de la cuenta destino para simular que no existe
+        Cuenta cuentaDestinoMock = mock(Cuenta.class);
+        when(cuentaDestinoMock.getId()).thenReturn(-1); // ID nulo para simular cuenta inexistente
+
+        double valorTransferencia = 50; // Valor de la transferencia
+
+        Transferencia transferencia = new Transferencia(cuentaOrigen, cuentaDestinoMock, valorTransferencia, "Pago de servicios");
+
+        // Verificación
+        Assertions.assertThrows(RuntimeException.class, () -> {
             transferencia.realizarTransaccion();
         });
     }

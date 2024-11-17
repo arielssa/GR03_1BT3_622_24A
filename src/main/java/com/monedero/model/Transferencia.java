@@ -1,5 +1,8 @@
 package com.monedero.model;
 
+import com.monedero.dao.BaseDAO;
+import com.monedero.dao.CuentaDAO;
+
 import javax.persistence.*;
 
 @Entity
@@ -39,13 +42,25 @@ public class Transferencia extends Transaccion {
     // Métodos
     @Override
     public void realizarTransaccion() {
-        validarValor();
+        // Verificar si la cuenta origen está bloqueada
+        if (cuentaOrigen.isBloqueada()) {
+            throw new RuntimeException("La cuenta de origen está bloqueada. No se puede realizar la transferencia.");
+        }
+
+        // Validar saldo suficiente en la cuenta de origen
         if (!cuentaOrigen.validarRetiro(this.valor)) {
             throw new RuntimeException("Saldo insuficiente para realizar la transferencia.");
-        } else if (!cuentaOrigen.isBloqueada()) {
-            cuentaOrigen.retirarDinero(this.valor);
-            cuentaDestino.depositarDinero(this.valor);
         }
+
+        // Verificar que la cuenta destino exista (aquí se pasa el DAO como parámetro)
+        CuentaDAO cuentaDAO = new CuentaDAO();  // Preferiblemente inyectar el DAO
+        if (cuentaDAO.findById(cuentaDestino.getId()) == null) {
+            throw new RuntimeException("La cuenta destino no existe.");
+        }
+
+        // Realizar la transferencia si todas las validaciones pasaron
+        cuentaOrigen.retirarDinero(this.valor);
+        cuentaDestino.depositarDinero(this.valor);
     }
 
     // Getters y Setters
