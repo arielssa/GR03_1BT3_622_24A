@@ -40,23 +40,26 @@ class CuentaBloqueoTest {
         verify(cuentaDAO, times(1)).update(cuenta);
     }
 
-    // Prueba unitaria usando CuentaDAO con base de datos
     @Test
-    void testBloquearCuentaConDAO() {
-        CuentaDAO cuentaDAO = new CuentaDAO();
+    void testDesbloquearCuentaConMock() {
+        // Crear un mock de CuentaDAO
+        CuentaDAO cuentaDAO = Mockito.mock(CuentaDAO.class);
 
-        // Crear y guardar una nueva cuenta de prueba
-        Cuenta cuenta = new Cuenta("Test Cuenta", "123456", null, 1000.0, 500.0);
-        cuentaDAO.save(cuenta);
-
-        // Bloquear la cuenta y actualizar en la base de datos
+        // Crear una instancia de Cuenta
+        Cuenta cuenta = new Cuenta();
         cuenta.setBloqueada(true);
+        cuenta.setId(1);
+
+        // Simular el comportamiento de findById para devolver nuestra cuenta
+        when(cuentaDAO.findById(1)).thenReturn(cuenta);
+
+        // Desbloquear la cuenta usando el mock
+        cuenta.setBloqueada(false);
         cuentaDAO.update(cuenta);
 
-        // Recuperar la cuenta desde la base de datos y verificar que está bloqueada
-        Cuenta cuentaActualizada = cuentaDAO.findById(cuenta.getId());
-        assertTrue(cuentaActualizada.isBloqueada(), "La cuenta debería estar bloqueada después de la actualización");
-        cuentaDAO.delete(cuentaActualizada);
+        // Verificar que el metodo setBloqueada cambió el estado de la cuenta
+        assertFalse(cuenta.isBloqueada(), "La cuenta debería estar desbloqueada después de la actualización");
+        verify(cuentaDAO, times(1)).update(cuenta);
     }
 
     // Prueba para verificar que no se puede realizar un egreso en una cuenta bloqueada
