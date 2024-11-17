@@ -21,7 +21,7 @@ import java.util.List;
 @WebServlet("/exportarMovimientos")
 public class ExportarMovimientosServlet extends HttpServlet {
     private GestorTransacciones gestorTransacciones;
-    private CuentaDAO cuentaDAO;
+    public CuentaDAO cuentaDAO;
 
     @Override
     public void init() {
@@ -29,7 +29,7 @@ public class ExportarMovimientosServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fechaInicioParam = request.getParameter("fechaInicio");
         String fechaFinParam = request.getParameter("fechaFin");
         String cuentaIdParam = request.getParameter("cuentaId");
