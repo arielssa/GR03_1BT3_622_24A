@@ -1,0 +1,165 @@
+/* Estilos generales del cuerpo */
+body.main-body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2D2F33; /* Fondo oscuro */
+    color: #E0E0E0; /* Texto claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mensaje de bienvenida */
+h2.welcome-message {
+    color: #F4F4F9; /* Blanco suave */
+    font-size: 2em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Sombra */
+    text-align: center;
+}
+
+/* Títulos de secciones */
+h3.section-title {
+    color: #F4F4F9; /* Blanco suave */
+    font-size: 1.5em;
+    margin-top: 30px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* Sombra */
+    text-align: center;
+}
+
+/* Tabla de objetivos */
+table.goal-table {
+    width: 90%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #3A3C42; /* Fondo oscuro */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+tr.table-header {
+    background-color: #4A90E2; /* Azul para encabezado */
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: left;
+}
+
+th.header-id, th.header-description, th.header-target-amount, th.header-current-amount, th.header-progress, th.header-remaining-amount, th.header-actions {
+    padding: 12px;
+}
+
+tr.goal-row {
+    border-bottom: 1px solid #656875; /* Separador de filas */
+}
+
+tr.goal-row:hover {
+    background-color: #44484F; /* Resalta la fila en hover */
+}
+
+td.goal-id, td.goal-description, td.goal-target-amount, td.goal-current-amount, td.goal-progress, td.goal-remaining-amount, td.goal-actions {
+    padding: 12px;
+    text-align: left;
+    color: #E0E0E0;
+}
+
+/* Formularios de acciones */
+form.income-form, form.withdraw-form, form.create-goal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.input-amount, .input-goal-description, .input-goal-target-amount, .input-goal-current-amount {
+    padding: 12px; /* Aumenta el padding para mayor espacio interno */
+    font-size: 1rem; /* Ajusta el tamaño de la fuente para ser más legible */
+    border: 1px solid #4A4A4A; /* Borde ligeramente más claro para mejor contraste */
+    border-radius: 8px; /* Bordes más redondeados */
+    background-color: #33363C; /* Fondo un poco más claro para mayor contraste */
+    color: #EAEAEA; /* Texto más claro para legibilidad */
+    width: calc(100% - 20px); /* Ajusta el ancho dinámicamente sin desbordar */
+    max-width: 400px; /* Ancho máximo ligeramente más amplio */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil para profundidad */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+}
+
+.input-amount:focus, .input-goal-description:focus,
+.input-goal-target-amount:focus, .input-goal-current-amount:focus {
+    border-color: #4A90E2; /* Cambia a azul al enfocar */
+    box-shadow: 0px 4px 8px rgba(74, 144, 226, 0.3); /* Sombra más pronunciada al enfocar */
+    outline: none; /* Quita el borde predeterminado */
+}
+
+/* Botones */
+button.income-button, button.withdraw-button, button.create-goal-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button.income-button {
+    background-color: #4CAF50; /* Verde para ingresos */
+}
+
+button.income-button:hover {
+    background-color: #66BB6A; /* Verde más claro en hover */
+    transform: translateY(-2px);
+}
+
+button.withdraw-button {
+    background-color: #E53935; /* Rojo para retiros */
+}
+
+button.withdraw-button:hover {
+    background-color: #EF5350; /* Rojo más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Centrar el botón "Crear Objetivo" */
+button.create-goal-button {
+    background-color: #FFA726; /* Naranja para crear objetivos */
+    margin: 0 auto; /* Centra horizontalmente el botón */
+    display: block; /* Asegura que se comporte como un bloque */
+}
+
+button.create-goal-button:hover {
+    background-color: #FFB74D; /* Naranja más claro en hover */
+    transform: translateY(-2px);
+}
+
+/* Ajustar el formulario para centrar el botón */
+form.create-goal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar los elementos dentro del formulario */
+    gap: 15px; /* Espaciado entre los inputs y el botón */
+    width: 100%;
+}
+
+/* Enlace de volver */
+div#enlace-volver {
+    margin-top: 20px;
+}
+
+a.enlace-volver {
+    font-size: 1em;
+    color: #B0BEC5; /* Gris claro */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 100px 0px 20px 0px;
+}
+
+a.enlace-volver:hover {
+    color: #E0E0E0; /* Blanco suave en hover */
+    text-decoration: underline;
+}
+

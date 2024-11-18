@@ -1,10 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Detalle de la Cuenta</title>
     <link rel="stylesheet" type="text/css" href="styles/detalleCuenta.css">
+    <script>
+        // Validación del campo balance limite
+        function validateBalanceLimite() {
+            let balanceLimite = document.querySelector('.input-balance-limite').value;
+            if (balanceLimite <= 0) {
+                alert("El balance límite debe ser un valor positivo.");
+                return false;
+            }
+            return true;
+        }
+
+        // Validación de fechas de inicio y fin
+        function validateFechaConsulta() {
+            let fechaInicio = document.getElementById("fechaInicio").value;
+            let fechaFin = document.getElementById("fechaFin").value;
+
+            if (fechaInicio > fechaFin) {
+                alert("La fecha de inicio debe ser anterior o igual a la fecha de fin.");
+                return false;
+            }
+            return true;
+        }
+
+        // Validación de la selección de etiqueta
+        function validateEtiqueta() {
+            let etiqueta = document.getElementById("etiqueta").value;
+            if (etiqueta === "") {
+                alert("Debe seleccionar una etiqueta.");
+                return false;
+            }
+            return true;
+        }
+
+        // Validaciones al enviar formularios
+        function validateActualizarBalance() {
+            return validateBalanceLimite();
+        }
+
+        function validateConsultaFecha() {
+            return validateFechaConsulta();
+        }
+
+        function validateConsultaEtiqueta() {
+            return validateEtiqueta();
+        }
+    </script>
 </head>
 <body id="cuerpo-detalle-cuenta">
 
@@ -15,10 +61,8 @@
     <c:remove var="mensaje" scope="session"/>
 </c:if>
 
-<!-- Título de la página -->
 <h2 id="titulo-detalles-cuenta">Detalles de la Cuenta</h2>
 
-<!-- Mostrar los detalles de la cuenta -->
 <section id="informacion-cuenta">
     <p class="detalle-cuenta"><strong>ID de la cuenta:</strong> ${cuentaId}</p>
     <p class="detalle-cuenta"><strong>Nombre de la cuenta:</strong> ${cuenta.nombre}</p>
@@ -26,7 +70,6 @@
     <p class="detalle-cuenta"><strong>Balance:</strong> ${cuenta.balance}</p>
     <p class="detalle-cuenta"><strong>Balance Límite:</strong> ${cuenta.balanceLimite}</p>
 
-    <!-- Botón para bloquear/desbloquear la cuenta -->
     <form action="detalleCuenta" method="post" class="formulario-detalle">
         <input type="hidden" name="cuentaId" value="${cuenta.id}">
         <button type="submit" name="action" value="toggleBloqueo" class="boton-bloqueo">
@@ -42,9 +85,8 @@
     </form>
 </section>
 
-
 <br>
-<form action="cuenta" method="post" id="form-actualizar-balance" class="formulario-detalle">
+<form action="cuenta" method="post" id="form-actualizar-balance" class="formulario-detalle" onsubmit="return validateActualizarBalance()">
     <input type="hidden" name="action" value="actualizarBalanceLimite">
     <input type="hidden" name="cuentaId" value="${cuenta.id}">
     <input type="number" name="balanceLimite" placeholder="Balance Limite" required class="input-balance-limite">
@@ -58,11 +100,11 @@
     <button type="submit" name="action" value="todas" class="boton-todas-transacciones">Ver Todas las Transacciones</button>
 </form>
 
-<!-- Formularios para consultar ingresos, egresos, transferencias o todas las transacciones -->
+<br>
+
 <h3 class="subtitulo">Consultar Movimientos</h3>
 
-<!-- Formulario para consultar por Fecha -->
-<form action="movimientos" method="get" id="form-consulta-fecha" class="formulario-detalle">
+<form action="movimientos" method="get" id="form-consulta-fecha" class="formulario-detalle" onsubmit="return validateConsultaFecha()">
     <input type="hidden" name="cuentaId" value="${cuenta.id}">
 
     <label for="fechaInicio" class="etiqueta-fecha">Fecha de Inicio:</label>
@@ -81,8 +123,7 @@
 
 <br>
 
-<!-- Formulario para consultar por Etiqueta -->
-<form action="movimientos" method="get" id="form-consulta-etiqueta" class="formulario-detalle">
+<form action="movimientos" method="get" id="form-consulta-etiqueta" class="formulario-detalle" onsubmit="return validateConsultaEtiqueta()">
     <input type="hidden" name="cuentaId" value="${cuenta.id}">
 
     <label for="etiqueta" class="etiqueta-seleccion">Etiqueta:</label>
@@ -104,7 +145,7 @@
 
 <!-- Formulario para exportar los movimientos en PDF -->
 <h3>Exportar Movimientos en PDF</h3>
-<form action="exportarMovimientos" method="post" id="form-exportar-pdf" class="formulario-detalle">
+<form action="exportarMovimientos" method="post" id="form-exportar-pdf" class="formulario-detalle" onsubmit="return validateConsultaFecha()">
     <input type="hidden" name="cuentaId" value="${cuenta.id}">
 
     <label for="fechaInicio">Fecha de Inicio (opcional):</label>

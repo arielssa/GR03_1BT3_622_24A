@@ -80,19 +80,39 @@
   </c:forEach>
 </table>
 
-<br>
 <h3 class="section-title">Crear Nuevo Objetivo de Ahorro</h3>
-<form action="objetivos" method="post" class="create-goal-form">
+<form action="objetivos" method="post" class="create-goal-form" onsubmit="return validateGoalCreation()">
   <input type="hidden" name="action" value="createGoal">
   <input type="text" name="descripcion" placeholder="Descripción del objetivo" required class="input-goal-description">
-  <input type="number" name="montoObjetivo" placeholder="Monto Objetivo" required class="input-goal-target-amount">
-  <input type="number" name="montoActual" placeholder="Monto Actual" required class="input-goal-current-amount">
+  <input type="number" name="montoObjetivo" placeholder="Monto Objetivo" required class="input-goal-target-amount" min="0">
+  <input type="number" name="montoActual" placeholder="Monto Actual" required class="input-goal-current-amount" min="0">
   <button type="submit" class="create-goal-button">Crear Objetivo</button>
 </form>
 
 <div id="enlace-volver">
   <a href="cuenta" class="enlace-volver">Volver a Mis Cuentas</a>
 </div>
+
+
+<script>
+  // Validar que los montos al crear el objetivo no sean negativos
+  function validateGoalCreation() {
+    const montoObjetivo = parseFloat(document.querySelector('input[name="montoObjetivo"]').value);
+    const montoActual = parseFloat(document.querySelector('input[name="montoActual"]').value);
+
+    if (montoObjetivo < 0 || montoActual < 0) {
+      alert("Los montos no pueden ser negativos. Por favor, ingrese valores válidos.");
+      return false;
+    }
+
+    if (montoActual > montoObjetivo) {
+      alert("El monto actual no puede ser mayor que el monto objetivo. Ajuste los valores e inténtelo de nuevo.");
+      return false;
+    }
+
+    return true; // Permitir el envío si todo está correcto
+  }
+</script>
 
 </body>
 </html>
